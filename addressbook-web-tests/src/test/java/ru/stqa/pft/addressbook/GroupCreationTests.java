@@ -15,10 +15,11 @@ import org.openqa.selenium.*;
 import static org.openqa.selenium.OutputType.*;
 
 public class GroupCreationTests {
-    FirefoxDriver wd;
+    WebDriver wd;
     
     @BeforeMethod
     public void setUp() throws Exception {
+        System.setProperty("webdriver.gecko.driver", "C:\\Tools\\GeckoDriver\\geckodriver.exe");
         wd = new FirefoxDriver();
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     }
