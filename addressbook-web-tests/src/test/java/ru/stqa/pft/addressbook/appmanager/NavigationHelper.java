@@ -6,18 +6,17 @@ import org.openqa.selenium.WebDriver;
 /**
  * Created by gis on 02.11.2016.
  */
-public class NavigationHelper {
-    private WebDriver wd;
+public class NavigationHelper extends HelperBase {
 
     public NavigationHelper(WebDriver wd) {
-        this.wd = wd;
+        super(wd);
     }
 
     public void gotoGroupPage() {
-        wd.findElement(By.linkText("groups")).click();
+        click(By.linkText("groups"));
     }
 
     public void gotoHomePage() {
-        wd.findElement(By.linkText("home page")).click();
+        click(By.linkText("home page"));
     }
 }
