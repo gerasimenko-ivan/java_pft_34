@@ -24,4 +24,7 @@ public class NavigationHelper extends HelperBase {
         find(By.xpath("//div[@id='content']//h1[.='Groups']"));
     }
 
+    public void isOnEditNewContactPage() {
+        find(By.xpath("//div[@id='content']//h1[.='Edit / add address book entry']"));
+    }
 }
