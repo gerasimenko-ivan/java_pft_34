@@ -33,4 +33,8 @@ public class HelperBase {
             return false;
         }
     }
+
+    protected void find(By locator) {
+        wd.findElement(locator);
+    }
 }
