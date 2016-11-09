@@ -9,16 +9,14 @@ public class ContactData {
     private String homePhone;
     private String email;
 
-    public ContactData() {}
-
-    public ContactData(String firstname, String middlename, String lastname, String title, String address, String homePhone, String email) {
-        this.firstname = firstname;
-        this.middlename = middlename;
-        this.lastname = lastname;
-        this.title = title;
-        this.address = address;
-        this.homePhone = homePhone;
-        this.email = email;
+    public ContactData() {
+        this.firstname = "";
+        this.middlename = "";
+        this.lastname = "";
+        this.title = "";
+        this.address = "";
+        this.homePhone = "";
+        this.email = "";
     }
 
     public String getFirstname() {
