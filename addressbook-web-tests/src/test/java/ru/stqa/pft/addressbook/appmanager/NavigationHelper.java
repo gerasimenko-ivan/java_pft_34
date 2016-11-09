@@ -27,4 +27,8 @@ public class NavigationHelper extends HelperBase {
     public void isOnEditNewContactPage() {
         find(By.xpath("//div[@id='content']//h1[.='Edit / add address book entry']"));
     }
+
+    public void gotoHome() {
+        click(By.linkText("home"));
+    }
 }
