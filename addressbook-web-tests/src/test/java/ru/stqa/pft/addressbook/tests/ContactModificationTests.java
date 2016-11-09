@@ -12,6 +12,7 @@ public class ContactModificationTests extends TestBase {
     public void testContactModification() {
         app.getNavigationHelper().gotoHome();
         app.getContactHelper().initContactModification();
+
         ContactData contactData = new ContactData();
         contactData
                 .setFirstname("Lee")
