@@ -16,6 +16,7 @@ public class ApplicationManager {
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
     private SessionHelper sessionHelper;
+    private AlertHelper alertHelper;
 
     public void init() {
         System.setProperty("webdriver.gecko.driver", "C:\\Tools\\GeckoDriver\\geckodriver.exe");
@@ -28,6 +29,7 @@ public class ApplicationManager {
         contactHelper = new ContactHelper(wd);
         navigationHelper = new NavigationHelper(wd);
         sessionHelper = new SessionHelper(wd);
+        alertHelper = new AlertHelper(wd);
 
         sessionHelper.login("admin", "secret");
     }
@@ -48,4 +50,6 @@ public class ApplicationManager {
     public ContactHelper getContactHelper() {
         return contactHelper;
     }
+
+    public AlertHelper getAlertHelper() { return alertHelper; }
 }
