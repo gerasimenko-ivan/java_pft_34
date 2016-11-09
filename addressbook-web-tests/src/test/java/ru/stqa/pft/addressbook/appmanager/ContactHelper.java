@@ -34,4 +34,8 @@ public class ContactHelper extends HelperBase {
     public void selectContact() { click(By.name("selected[]"));  }
 
     public void deleteSelectedContract() { click(By.xpath("//div[@id='content']/form[2]/div[2]/input")); }
+
+    public void initContactModification() { click(By.cssSelector("img[src='icons/pencil.png']")); }
+
+    public void submitContactModification() { click(By.name("update")); }
 }
