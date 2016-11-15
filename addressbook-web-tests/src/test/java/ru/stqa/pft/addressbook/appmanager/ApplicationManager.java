@@ -30,14 +30,14 @@ public class ApplicationManager {
     public void init() {
         System.setProperty("webdriver.gecko.driver", "C:\\Tools\\GeckoDriver\\geckodriver.exe");
 
-        if (browser == BrowserType.FIREFOX) {
+        if (browser.equals(BrowserType.FIREFOX)) {
             FirefoxProfile profile = new FirefoxProfile();
             profile.setPreference("browser.startup.homepage_override.mstone", "ignore");
             profile.setPreference("startup.homepage_welcome_url.additional",  "about:blank");
             wd = new FirefoxDriver(profile);
-        } else if (browser == BrowserType.CHROME) {
+        } else if (browser.equals(BrowserType.CHROME)) {
             wd = new ChromeDriver();
-        } else if (browser == BrowserType.IE) {
+        } else if (browser.equals(BrowserType.IE)) {
             wd = new InternetExplorerDriver();
         }
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
