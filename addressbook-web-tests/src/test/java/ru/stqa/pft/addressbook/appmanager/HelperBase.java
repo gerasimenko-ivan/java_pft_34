@@ -21,12 +21,14 @@ public class HelperBase {
     }
 
     protected void type(By locator, String text) {
-        WebElement element = wd.findElement(locator);
-        element.clear();
-        element.sendKeys(text);
+        if (text != null) {
+            WebElement element = wd.findElement(locator);
+            element.clear();
+            element.sendKeys(text);
+        }
     }
 
-    public boolean isAlertPresent(FirefoxDriver wd) {
+    public boolean isAlertPresent(WebDriver wd) {
         try {
             wd.switchTo().alert();
             return true;
