@@ -8,6 +8,7 @@ public class ContactData {
     private String address;
     private String homePhone;
     private String email;
+    private String group;
 
     public ContactData() {
         this.firstname = "";
@@ -17,6 +18,7 @@ public class ContactData {
         this.address = "";
         this.homePhone = "";
         this.email = "";
+        this.group = null;
     }
 
     public String getFirstname() {
@@ -79,6 +81,15 @@ public class ContactData {
 
     public ContactData setEmail(String email) {
         this.email = email;
+        return this;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public ContactData setGroup(String group) {
+        this.group = group;
         return this;
     }
 }
