@@ -2,7 +2,10 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.GroupData;
+
+import java.util.List;
 
 /**
  * Created by gis on 02.11.2016.
@@ -60,5 +63,9 @@ public class GroupHelper extends HelperBase {
 
     public boolean isThereAGroup(String groupName) {
         return isElementPresent(By.xpath("//input[@title='Select (" + groupName + ")']"));
+    }
+
+    public int getGroupCount() {
+        return wd.findElements(By.name("selected[]")).size();
     }
 }
