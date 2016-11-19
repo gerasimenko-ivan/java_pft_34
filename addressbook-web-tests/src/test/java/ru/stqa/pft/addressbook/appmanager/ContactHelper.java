@@ -43,7 +43,9 @@ public class ContactHelper extends HelperBase {
         find(By.xpath("//div[@id='content']//h1[.='Edit / add address book entry']"));
     }
 
-    public void selectContact() { click(By.name("selected[]"));  }
+    public void selectFirstContact() {
+        click(By.xpath(".//*[@id='maintable']/tbody/tr[2]/td[1]/input"));
+    }
 
     public void deleteSelectedContract() { click(By.xpath("//input[@onclick='DeleteSel()']")); }
 

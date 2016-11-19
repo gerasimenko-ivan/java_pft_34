@@ -19,7 +19,7 @@ public class ContactDeletionTests extends TestBase {
             app.getContactHelper().createContact(contactData);
             app.getNavigationHelper().gotoHomePage();
         }
-        app.getContactHelper().selectContact();
+        app.getContactHelper().selectFirstContact();
         app.getContactHelper().deleteSelectedContract();
         app.getAlertHelper().accept();
         app.getNavigationHelper().gotoHome();
