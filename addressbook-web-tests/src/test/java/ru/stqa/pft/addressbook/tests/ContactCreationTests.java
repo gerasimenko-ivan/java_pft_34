@@ -8,8 +8,8 @@ public class ContactCreationTests extends TestBase {
     
     @Test
     public void testContactCreation() {
+        // TODO: add group check with name "test1"
         app.getContactHelper().initContactCreation();
-        app.getNavigationHelper().isOnEditNewContactPage();
 
         ContactData contactData = new ContactData();
         contactData
@@ -19,8 +19,8 @@ public class ContactCreationTests extends TestBase {
                 .setTitle("Dr.")
                 .setAddress("221B Baker Street London")
                 .setHomePhone("9(2131)324-33-33")
-                .setEmail("test@test.ts")
-                .setGroup("test1");
+                .setEmail("test@test.ts");
+                //.setGroup("test1");
 
         app.getContactHelper().fillContactForm(contactData, FormAction.CREATION);
         app.getContactHelper().submitContactCreation();

@@ -30,7 +30,9 @@ public class ContactHelper extends HelperBase {
         type(By.name("email"), contactData.getEmail());
 
         if (formAction == FormAction.CREATION) {
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+            if (contactData.getGroup() != null) {
+                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+            }
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
@@ -38,6 +40,7 @@ public class ContactHelper extends HelperBase {
 
     public void initContactCreation() {
         click(By.linkText("add new"));
+        find(By.xpath("//div[@id='content']//h1[.='Edit / add address book entry']"));
     }
 
     public void selectContact() { click(By.name("selected[]"));  }
@@ -47,4 +50,15 @@ public class ContactHelper extends HelperBase {
     public void initContactModification() { click(By.cssSelector("img[src='icons/pencil.png']")); }
 
     public void submitContactModification() { click(By.name("update")); }
+
+    public void createContact(ContactData contact) {
+        initContactCreation();
+        fillContactForm(contact, FormAction.CREATION);
+        submitContactCreation();
+
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.cssSelector("img[src='icons/pencil.png']"));//  /tbody/tr[2]/td[1]"));
+    }
 }

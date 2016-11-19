@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.Test;
+import ru.stqa.pft.addressbook.model.ContactData;
 
 /**
  * Created by gis on 07.11.2016.
@@ -10,6 +11,14 @@ public class ContactDeletionTests extends TestBase {
     @Test
     public void testContactDeletion() {
         app.getNavigationHelper().gotoHome();
+        if (! app.getContactHelper().isThereAContact()) {
+            ContactData contactData = new ContactData();
+            contactData
+                    .setFirstname("Testname")
+                    .setLastname("Testsurname");
+            app.getContactHelper().createContact(contactData);
+            app.getNavigationHelper().gotoHomePage();
+        }
         app.getContactHelper().selectContact();
         app.getContactHelper().deleteSelectedContract();
         app.getAlertHelper().accept();

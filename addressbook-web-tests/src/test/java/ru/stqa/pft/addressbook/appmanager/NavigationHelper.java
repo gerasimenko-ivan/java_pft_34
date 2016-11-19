@@ -26,14 +26,11 @@ public class NavigationHelper extends HelperBase {
             return;
         }
         click(By.linkText("home page"));
+        find(By.id("maintable"));
     }
 
     public void isOnGroupPage() {
         find(By.xpath("//div[@id='content']//h1[.='Groups']"));
-    }
-
-    public void isOnEditNewContactPage() {
-        find(By.xpath("//div[@id='content']//h1[.='Edit / add address book entry']"));
     }
 
     public void gotoHome() {
