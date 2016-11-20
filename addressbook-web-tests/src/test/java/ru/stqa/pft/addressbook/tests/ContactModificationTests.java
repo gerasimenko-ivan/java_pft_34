@@ -23,7 +23,7 @@ public class ContactModificationTests extends TestBase {
         }
 
         int contactCountBefore = app.getContactHelper().getContactCount();
-        app.getContactHelper().initContactModification();
+        app.getContactHelper().initContactModification(contactCountBefore - 1);
 
         ContactData contactData = new ContactData();
         contactData

@@ -43,13 +43,15 @@ public class ContactHelper extends HelperBase {
         find(By.xpath("//div[@id='content']//h1[.='Edit / add address book entry']"));
     }
 
-    public void selectContact() {
-        click(By.xpath(".//*[@id='maintable']/tbody/tr[2]/td[1]/input"));
+    public void selectContact(int index) {
+        click(By.xpath(".//*[@id='maintable']/tbody/tr[" + (2 + index) + "]/td[1]/input"));  // contact tr starts from 2
     }
 
     public void deleteSelectedContract() { click(By.xpath("//input[@onclick='DeleteSel()']")); }
 
-    public void initContactModification() { click(By.cssSelector("img[src='icons/pencil.png']")); }
+    public void initContactModification(int index) {
+        wd.findElements(By.cssSelector("img[src='icons/pencil.png']")).get(index).click();
+    }
 
     public void submitContactModification() { click(By.name("update")); }
 
