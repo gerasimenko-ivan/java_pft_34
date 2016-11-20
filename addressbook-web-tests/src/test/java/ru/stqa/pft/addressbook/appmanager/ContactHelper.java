@@ -43,7 +43,7 @@ public class ContactHelper extends HelperBase {
         find(By.xpath("//div[@id='content']//h1[.='Edit / add address book entry']"));
     }
 
-    public void selectFirstContact() {
+    public void selectContact() {
         click(By.xpath(".//*[@id='maintable']/tbody/tr[2]/td[1]/input"));
     }
 
@@ -61,6 +61,10 @@ public class ContactHelper extends HelperBase {
     }
 
     public boolean isThereAContact() {
-        return isElementPresent(By.cssSelector("img[src='icons/pencil.png']"));//  /tbody/tr[2]/td[1]"));
+        return isElementPresent(By.cssSelector("img[src='icons/pencil.png']"));
+    }
+
+    public int getContactCount() {
+        return wd.findElements(By.cssSelector("img[src='icons/pencil.png']")).size();
     }
 }
