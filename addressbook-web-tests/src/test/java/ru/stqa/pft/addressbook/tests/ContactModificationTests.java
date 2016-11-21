@@ -5,6 +5,8 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.appmanager.HelperBase.FormAction;
 import ru.stqa.pft.addressbook.model.ContactData;
 
+import java.util.List;
+
 /**
  * Created by gis on 09.11.2016.
  */
@@ -22,8 +24,8 @@ public class ContactModificationTests extends TestBase {
             app.getNavigationHelper().gotoHomePage();
         }
 
-        int contactCountBefore = app.getContactHelper().getContactCount();
-        app.getContactHelper().initContactModification(contactCountBefore - 1);
+        List<ContactData> contactsBefore = app.getContactHelper().getContactList();
+        app.getContactHelper().initContactModification(contactsBefore.size() - 1);
 
         ContactData contactData = new ContactData();
         contactData
@@ -38,7 +40,7 @@ public class ContactModificationTests extends TestBase {
         app.getContactHelper().submitContactModification();
         app.getNavigationHelper().gotoHomePage();
 
-        int contactCountAfter = app.getContactHelper().getContactCount();
-        Assert.assertEquals(contactCountAfter, contactCountBefore);
+        List<ContactData> contactsAfter = app.getContactHelper().getContactList();
+        Assert.assertEquals(contactsAfter.size(), contactsBefore.size());
     }
 }

@@ -6,6 +6,8 @@ import ru.stqa.pft.addressbook.appmanager.HelperBase.FormAction;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 
+import java.util.List;
+
 public class ContactCreationTests extends TestBase {
     
     @Test
@@ -20,7 +22,7 @@ public class ContactCreationTests extends TestBase {
         }
 
         app.getNavigationHelper().gotoHome();
-        int contactCountBefore = app.getContactHelper().getContactCount();
+        List<ContactData> contactsBefore = app.getContactHelper().getContactList();
 
         app.getContactHelper().initContactCreation();
 
@@ -39,8 +41,8 @@ public class ContactCreationTests extends TestBase {
         app.getContactHelper().submitContactCreation();
         app.getNavigationHelper().gotoHomePage();
 
-        int contactCountAfter = app.getContactHelper().getContactCount();
-        Assert.assertEquals(contactCountAfter, contactCountBefore + 1);
+        List<ContactData> contactsAfter = app.getContactHelper().getContactList();
+        Assert.assertEquals(contactsAfter.size(), contactsBefore.size() + 1);
     }
 
 }
