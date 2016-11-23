@@ -26,7 +26,6 @@ public class ContactModificationTests extends TestBase {
         }
 
         List<ContactData> contactsBefore = app.getContactHelper().getContactList();
-        app.getContactHelper().initContactModification(contactsBefore.size() - 1);
 
         ContactData contact = new ContactData();
         contact
@@ -38,8 +37,7 @@ public class ContactModificationTests extends TestBase {
                 .setHomePhone("(852) 2877-8933")
                 .setEmail("hongkong@ihg.com");
 
-        app.getContactHelper().fillContactForm(contact, FormAction.MODIFICATION);
-        app.getContactHelper().submitContactModification();
+        app.getContactHelper().modifyContact(contactsBefore.size() - 1, contact);
         app.getNavigationHelper().gotoHomePage();
 
         List<ContactData> contactsAfter = app.getContactHelper().getContactList();

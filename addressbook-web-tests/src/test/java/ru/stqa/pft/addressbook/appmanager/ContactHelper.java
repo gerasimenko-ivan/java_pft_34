@@ -88,4 +88,10 @@ public class ContactHelper extends HelperBase {
         }
         return contacts;
     }
+
+    public void modifyContact(int index, ContactData newContact) {
+        initContactModification(index);
+        fillContactForm(newContact, FormAction.MODIFICATION);
+        submitContactModification();
+    }
 }
