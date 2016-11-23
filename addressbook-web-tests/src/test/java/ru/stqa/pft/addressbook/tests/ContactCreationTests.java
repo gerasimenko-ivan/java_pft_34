@@ -25,8 +25,6 @@ public class ContactCreationTests extends TestBase {
         app.getNavigationHelper().gotoHome();
         List<ContactData> contactsBefore = app.getContactHelper().getContactList();
 
-        app.getContactHelper().initContactCreation();
-
         ContactData contact = new ContactData();
         contact
                 .setFirstname("Yan")
@@ -37,9 +35,7 @@ public class ContactCreationTests extends TestBase {
                 .setHomePhone("9(2131)324-33-33")
                 .setEmail("test@test.ts")
                 .setGroup(groupName);
-
-        app.getContactHelper().fillContactForm(contact, FormAction.CREATION);
-        app.getContactHelper().submitContactCreation();
+        app.getContactHelper().createContact(contact);
         app.getNavigationHelper().gotoHomePage();
 
         List<ContactData> contactsAfter = app.getContactHelper().getContactList();

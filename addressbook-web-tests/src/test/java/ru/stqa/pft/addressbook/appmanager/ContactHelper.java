@@ -63,7 +63,6 @@ public class ContactHelper extends HelperBase {
         initContactCreation();
         fillContactForm(contact, FormAction.CREATION);
         submitContactCreation();
-
     }
 
     public boolean isThereAContact() {
