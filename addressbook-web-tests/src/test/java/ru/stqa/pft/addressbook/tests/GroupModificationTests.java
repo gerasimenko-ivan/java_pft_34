@@ -18,6 +18,7 @@ public class GroupModificationTests extends TestBase {
         app.getNavigationHelper().isOnGroupPage();
         if (! app.getGroupHelper().isThereAGroup()) {
             app.getGroupHelper().createGroup(new GroupData("test", null, null));
+            app.getNavigationHelper().returnToGroupPage();
         }
 
         List<GroupData> groupsBefore = app.getGroupHelper().getGroupList();
@@ -26,7 +27,7 @@ public class GroupModificationTests extends TestBase {
         GroupData group = new GroupData(groupsBefore.get(groupsBefore.size() - 1).getId(), "new-test1", "new-test2", "new-test3");
         app.getGroupHelper().fillGroupForm(group);
         app.getGroupHelper().submitGroupModification();
-        app.getGroupHelper().returnToGroupPage();
+        app.getNavigationHelper().returnToGroupPage();
 
         List<GroupData> groupsAfter = app.getGroupHelper().getGroupList();
         Assert.assertEquals(groupsAfter.size(), groupsBefore.size());
