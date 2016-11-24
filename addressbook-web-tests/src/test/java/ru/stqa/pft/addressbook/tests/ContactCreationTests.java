@@ -6,6 +6,7 @@ import ru.stqa.pft.addressbook.appmanager.HelperBase.FormAction;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class ContactCreationTests extends TestBase {
 
         ContactData contact = new ContactData();
         contact
+                .setId(Integer.MAX_VALUE)
                 .setFirstname("Yan")
                 .setMiddlename("E.")
                 .setLastname("Doe")
@@ -41,9 +43,11 @@ public class ContactCreationTests extends TestBase {
         List<ContactData> contactsAfter = app.getContactHelper().getContactList();
         Assert.assertEquals(contactsAfter.size(), contactsBefore.size() + 1);
 
-        contact.setId(contactsAfter.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
         contactsBefore.add(contact);
-        Assert.assertEquals(new HashSet<Object>(contactsAfter), new HashSet<Object>(contactsBefore));
+        Comparator<? super ContactData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
+        contactsBefore.sort(byId);
+        contactsAfter.sort(byId);
+        Assert.assertEquals(contactsAfter, contactsBefore);
     }
 
 }
