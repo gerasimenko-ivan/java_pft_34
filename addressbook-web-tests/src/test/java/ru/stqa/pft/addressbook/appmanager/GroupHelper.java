@@ -53,11 +53,11 @@ public class GroupHelper extends HelperBase {
         click(By.linkText("group page"));
     }
 
-    public boolean isThereAGroup() {
+    public boolean doesExist() {
         return isElementPresent(By.name("selected[]"));
     }
 
-    public boolean isThereAGroup(String groupName) {
+    public boolean doesExist(String groupName) {
         return isElementPresent(By.xpath("//input[@title='Select (" + groupName + ")']"));
     }
 
