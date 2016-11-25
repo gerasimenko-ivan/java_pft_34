@@ -36,7 +36,7 @@ public class ContactModificationTests extends TestBase {
                 .setFirstname(rnd.getFirstnameEng())
                 .setLastname(rnd.getSurnameEng())
                 .setTitle("Ms.")
-                .setAddress("Flat D, 6/F, Golden Industrial Center, Block 4, 182-190 Tai Lin Pai Road, Kwai Chung")
+                .setAddress(rnd.getAddressEng())
                 .setHomePhone("(852) 2877-8933")
                 .setEmail("hongkong@ihg.com");
 

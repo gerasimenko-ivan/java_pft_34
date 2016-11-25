@@ -33,7 +33,7 @@ public class ContactCreationTests extends TestBase {
                 .setMiddlename("E.")
                 .setLastname(rnd.getSurnameEng())
                 .setTitle("Dr.")
-                .setAddress("221B Baker Street London")
+                .setAddress(rnd.getAddressEng())
                 .setHomePhone("9(2131)324-33-33")
                 .setEmail("test@test.ts")
                 .setGroup(groupName);
