@@ -47,11 +47,11 @@ public class ContactHelper extends HelperBase {
         find(By.xpath("//div[@id='content']//h1[.='Edit / add address book entry']"));
     }
 
-    public void selectContact(int index) {
+    public void select(int index) {
         click(By.xpath(".//*[@id='maintable']/tbody/tr[" + (2 + index) + "]/td[1]/input"));  // contact tr starts from 2
     }
 
-    public void deleteSelectedContract() { click(By.xpath("//input[@onclick='DeleteSel()']")); }
+    public void deleteSelected() { click(By.xpath("//input[@onclick='DeleteSel()']")); }
 
     public void initContactModification(int index) {
         wd.findElements(By.cssSelector("img[src='icons/pencil.png']")).get(index).click();
@@ -59,14 +59,14 @@ public class ContactHelper extends HelperBase {
 
     public void submitContactModification() { click(By.name("update")); }
 
-    public void createContact(ContactData contact) {
+    public void create(ContactData contact) {
         initContactCreation();
         fillContactForm(contact, FormAction.CREATION);
         submitContactCreation();
         gotoHomePage();
     }
 
-    public boolean isThereAContact() {
+    public boolean doesExist() {
         return isElementPresent(By.cssSelector("img[src='icons/pencil.png']"));
     }
 
@@ -74,7 +74,7 @@ public class ContactHelper extends HelperBase {
         return wd.findElements(By.cssSelector("img[src='icons/pencil.png']")).size();
     }
 
-    public List<ContactData> getContactList() {
+    public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<ContactData>();
         List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
         for (WebElement element : elements) {
@@ -90,7 +90,7 @@ public class ContactHelper extends HelperBase {
         return contacts;
     }
 
-    public void modifyContact(int index, ContactData newContact) {
+    public void modify(int index, ContactData newContact) {
         initContactModification(index);
         fillContactForm(newContact, FormAction.MODIFICATION);
         submitContactModification();

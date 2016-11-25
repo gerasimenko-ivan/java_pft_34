@@ -23,8 +23,8 @@ public class ContactCreationTests extends TestBase {
     
     @Test
     public void testContactCreation() {
-        app.navigateTo().gotoHome();
-        List<ContactData> contactsBefore = app.getContactHelper().getContactList();
+        app.navigateTo().home();
+        List<ContactData> contactsBefore = app.contact().list();
 
         ContactData contact = new ContactData();
         contact
@@ -37,9 +37,11 @@ public class ContactCreationTests extends TestBase {
                 .setHomePhone("9(2131)324-33-33")
                 .setEmail("test@test.ts")
                 .setGroup(groupName);
-        app.getContactHelper().createContact(contact);
+        app.contact().create(contact);
 
-        List<ContactData> contactsAfter = app.getContactHelper().getContactList();
+        // assertions
+
+        List<ContactData> contactsAfter = app.contact().list();
         Assert.assertEquals(contactsAfter.size(), contactsBefore.size() + 1);
 
         contactsBefore.add(contact);
