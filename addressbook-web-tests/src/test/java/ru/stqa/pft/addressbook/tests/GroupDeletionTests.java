@@ -22,7 +22,7 @@ public class GroupDeletionTests extends TestBase {
 
         List<GroupData> groupsBefore = app.group().getGroupList();
         int groupToDelete = rnd.getInt(0, groupsBefore.size() - 1);
-        app.group().deleteGroup(groupToDelete);
+        app.group().delete(groupToDelete);
 
         List<GroupData> groupsAfter = app.group().getGroupList();
         Assert.assertEquals(groupsAfter.size(), groupsBefore.size() - 1);
