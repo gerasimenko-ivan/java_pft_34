@@ -23,13 +23,13 @@ public class GroupModificationTests extends TestBase {
 
     @Test
     public void testGroupModification() {
-        List<GroupData> groupsBefore = app.group().getList();
+        List<GroupData> groupsBefore = app.group().list();
         int index = rnd.getInt(0, groupsBefore.size() - 1);
         GroupData group = new GroupData(groupsBefore.get(index).getId(), "new-test" + rnd.getInt(1001, 2000), "new-test2", "new-test3");
 
         app.group().modifyGroup(index, group);
 
-        List<GroupData> groupsAfter = app.group().getList();
+        List<GroupData> groupsAfter = app.group().list();
         Assert.assertEquals(groupsAfter.size(), groupsBefore.size());
 
         groupsBefore.remove(index);
