@@ -36,8 +36,8 @@ public class ContactModificationTests extends TestBase {
         ContactData contact = new ContactData();
         contact
                 .setId(contactsBefore.get(contactToEdit).getId())
-                .setFirstname("Foo")
-                .setLastname("Khun")
+                .setFirstname(rnd.getFirstnameEng())
+                .setLastname(rnd.getSurnameEng())
                 .setTitle("Ms.")
                 .setAddress("Flat D, 6/F, Golden Industrial Center, Block 4, 182-190 Tai Lin Pai Road, Kwai Chung")
                 .setHomePhone("(852) 2877-8933")
