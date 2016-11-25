@@ -19,19 +19,18 @@ public class GroupModificationTests extends TestBase {
         app.getNavigationHelper().isOnGroupPage();
         if (! app.getGroupHelper().isThereAGroup()) {
             app.getGroupHelper().createGroup(new GroupData("test", null, null));
-            app.getNavigationHelper().returnToGroupPage();
         }
 
         List<GroupData> groupsBefore = app.getGroupHelper().getGroupList();
-        GroupData group = new GroupData(groupsBefore.get(groupsBefore.size() - 1).getId(), "new-test1", "new-test2", "new-test3");
+        int groupToEdit = groupsBefore.size() - 1;
+        GroupData group = new GroupData(groupsBefore.get(groupToEdit).getId(), "new-test1", "new-test2", "new-test3");
 
-        app.getGroupHelper().modifyGroup(groupsBefore.size() - 1, group);
-        app.getNavigationHelper().returnToGroupPage();
+        app.getGroupHelper().modifyGroup(groupToEdit, group);
 
         List<GroupData> groupsAfter = app.getGroupHelper().getGroupList();
         Assert.assertEquals(groupsAfter.size(), groupsBefore.size());
 
-        groupsBefore.remove(groupsBefore.size() - 1);
+        groupsBefore.remove(groupToEdit);
         groupsBefore.add(group);
         Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
         groupsBefore.sort(byId);

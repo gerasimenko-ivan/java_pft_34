@@ -17,6 +17,8 @@ public class GroupHelper extends HelperBase {
         super(wd);
     }
 
+    //////////////////////////// single action methods //////////////////////////
+
     public void submitGroupCreation() {
         click(By.name("submit"));
     }
@@ -47,10 +49,8 @@ public class GroupHelper extends HelperBase {
         click(By.name("update"));
     }
 
-    public void createGroup(GroupData group) {
-        initGroupCreation();
-        fillGroupForm(group);
-        submitGroupCreation();
+    private void returnToGroupPage() {
+        click(By.linkText("group page"));
     }
 
     public boolean isThereAGroup() {
@@ -77,10 +77,26 @@ public class GroupHelper extends HelperBase {
         return groups;
     }
 
+    //////////////////////////// complex methods //////////////////////////
+
+    public void createGroup(GroupData group) {
+        initGroupCreation();
+        fillGroupForm(group);
+        submitGroupCreation();
+        returnToGroupPage();
+    }
+
     public void modifyGroup(int index, GroupData newGroup) {
         selectGroup(index);
         initGroupModification();
         fillGroupForm(newGroup);
         submitGroupModification();
+        returnToGroupPage();
+    }
+
+    public void deleteGroup(int index) {
+        selectGroup(index);
+        deleteSelectedGroups();
+        returnToGroupPage();
     }
 }
