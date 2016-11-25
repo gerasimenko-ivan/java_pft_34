@@ -15,7 +15,6 @@ public class ContactCreationTests extends TestBase {
     @BeforeClass
     public void ensurePreconditions() {
         app.navigateTo().groupPage();
-        app.navigateTo().isOnGroupPage();
         if (! app.getGroupHelper().isThereAGroup(groupName)) {
             GroupData groupData = new GroupData(groupName, null, null);
             app.getGroupHelper().createGroup(groupData);
