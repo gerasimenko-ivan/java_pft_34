@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.appmanager.HelperBase.FormAction;
@@ -14,7 +15,7 @@ import java.util.List;
 public class ContactCreationTests extends TestBase {
     private String groupName = "test1";
 
-    @BeforeMethod
+    @BeforeClass
     public void ensurePreconditions() {
         app.getNavigationHelper().gotoGroupPage();
         app.getNavigationHelper().isOnGroupPage();
@@ -22,12 +23,11 @@ public class ContactCreationTests extends TestBase {
             GroupData groupData = new GroupData(groupName, null, null);
             app.getGroupHelper().createGroup(groupData);
         }
-
-        app.getNavigationHelper().gotoHome();
     }
     
     @Test
     public void testContactCreation() {
+        app.getNavigationHelper().gotoHome();
         List<ContactData> contactsBefore = app.getContactHelper().getContactList();
 
         ContactData contact = new ContactData();
