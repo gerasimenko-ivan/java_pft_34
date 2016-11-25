@@ -20,7 +20,6 @@ public class ContactDeletionTests extends TestBase {
                     .setFirstname("Testname")
                     .setLastname("Testsurname");
             app.getContactHelper().createContact(contactData);
-            app.getNavigationHelper().gotoHomePage();
         }
 
         List<ContactData> contactsBefore = app.getContactHelper().getContactList();

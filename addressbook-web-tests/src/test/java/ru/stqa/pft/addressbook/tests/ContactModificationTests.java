@@ -23,7 +23,6 @@ public class ContactModificationTests extends TestBase {
                     .setFirstname("Testname")
                     .setLastname("Testsurname");
             app.getContactHelper().createContact(contactData);
-            app.getNavigationHelper().gotoHomePage();
         }
 
         List<ContactData> contactsBefore = app.getContactHelper().getContactList();
@@ -39,7 +38,6 @@ public class ContactModificationTests extends TestBase {
                 .setEmail("hongkong@ihg.com");
 
         app.getContactHelper().modifyContact(contactsBefore.size() - 1, contact);
-        app.getNavigationHelper().gotoHomePage();
 
         List<ContactData> contactsAfter = app.getContactHelper().getContactList();
         Assert.assertEquals(contactsAfter.size(), contactsBefore.size());

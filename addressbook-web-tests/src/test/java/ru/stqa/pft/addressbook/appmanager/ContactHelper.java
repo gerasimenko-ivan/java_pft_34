@@ -63,6 +63,7 @@ public class ContactHelper extends HelperBase {
         initContactCreation();
         fillContactForm(contact, FormAction.CREATION);
         submitContactCreation();
+        gotoHomePage();
     }
 
     public boolean isThereAContact() {
@@ -93,5 +94,14 @@ public class ContactHelper extends HelperBase {
         initContactModification(index);
         fillContactForm(newContact, FormAction.MODIFICATION);
         submitContactModification();
+        gotoHomePage();
+    }
+
+    private void gotoHomePage() {
+        if (isElementPresent(By.id("maintable"))) {
+            return;
+        }
+        click(By.linkText("home page"));
+        find(By.id("maintable"));
     }
 }

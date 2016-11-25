@@ -21,14 +21,6 @@ public class NavigationHelper extends HelperBase {
         click(By.linkText("groups"));
     }
 
-    public void gotoHomePage() {
-        if (isElementPresent(By.id("maintable"))) {
-            return;
-        }
-        click(By.linkText("home page"));
-        find(By.id("maintable"));
-    }
-
     public void isOnGroupPage() {
         find(By.xpath("//div[@id='content']//h1[.='Groups']"));
     }

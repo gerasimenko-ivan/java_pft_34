@@ -38,7 +38,6 @@ public class ContactCreationTests extends TestBase {
                 .setEmail("test@test.ts")
                 .setGroup(groupName);
         app.getContactHelper().createContact(contact);
-        app.getNavigationHelper().gotoHomePage();
 
         List<ContactData> contactsAfter = app.getContactHelper().getContactList();
         Assert.assertEquals(contactsAfter.size(), contactsBefore.size() + 1);
