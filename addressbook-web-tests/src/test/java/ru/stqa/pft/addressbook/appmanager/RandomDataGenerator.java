@@ -17,4 +17,13 @@ public class RandomDataGenerator {
         String[] surnames = {"Davis", "Doe", "Lee", "Smith", "Tramp"};
         return surnames[getInt(0, surnames.length - 1)];
     }
+
+    public String getAddressEng() {
+        String[] litera = {"", "A", "B", "C"};
+        String[] streets = {"Baker Street", "Wall Street", "West Road"};
+        String[] cities = {"Boston", "Lisboa", "Moscow", "New York", "Roma"};
+        return getInt(1, 999) + litera[getInt(0, litera.length - 1)] +
+                ", " + streets[getInt(0, streets.length - 1)] +
+                ", " + cities[getInt(0, cities.length - 1)];
+    }
 }
