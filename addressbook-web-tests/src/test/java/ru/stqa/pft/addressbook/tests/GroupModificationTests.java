@@ -26,8 +26,8 @@ public class GroupModificationTests extends TestBase {
     @Test
     public void testGroupModification() {
         List<GroupData> groupsBefore = app.getGroupHelper().getGroupList();
-        int groupToEdit = groupsBefore.size() - 1;
-        GroupData group = new GroupData(groupsBefore.get(groupToEdit).getId(), "new-test1", "new-test2", "new-test3");
+        int groupToEdit = rnd.getInt(0, groupsBefore.size() - 1);
+        GroupData group = new GroupData(groupsBefore.get(groupToEdit).getId(), "new-test" + rnd.getInt(1001, 2000), "new-test2", "new-test3");
 
         app.getGroupHelper().modifyGroup(groupToEdit, group);
 
