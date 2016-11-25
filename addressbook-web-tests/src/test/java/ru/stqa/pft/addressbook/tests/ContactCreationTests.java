@@ -33,9 +33,9 @@ public class ContactCreationTests extends TestBase {
         ContactData contact = new ContactData();
         contact
                 .setId(Integer.MAX_VALUE)
-                .setFirstname("Yan")
+                .setFirstname(rnd.getFirstnameEng())
                 .setMiddlename("E.")
-                .setLastname("Doe")
+                .setLastname(rnd.getSurnameEng())
                 .setTitle("Dr.")
                 .setAddress("221B Baker Street London")
                 .setHomePhone("9(2131)324-33-33")
