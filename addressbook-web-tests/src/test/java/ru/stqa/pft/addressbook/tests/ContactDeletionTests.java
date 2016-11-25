@@ -28,8 +28,8 @@ public class ContactDeletionTests extends TestBase {
     public void testContactDeletion() {
         List<ContactData> contactsBefore = app.getContactHelper().getContactList();
 
-        int contactToDelete = rnd.getInt(0, contactsBefore.size() - 1);
-        app.getContactHelper().selectContact(contactToDelete);
+        int index = rnd.getInt(0, contactsBefore.size() - 1);
+        app.getContactHelper().selectContact(index);
         app.getContactHelper().deleteSelectedContract();
         app.getAlertHelper().accept();
         app.navigateTo().gotoHome();
@@ -37,7 +37,7 @@ public class ContactDeletionTests extends TestBase {
         List<ContactData> contactsAfter = app.getContactHelper().getContactList();
         Assert.assertEquals(contactsAfter.size(), contactsBefore.size() - 1);
 
-        contactsBefore.remove(contactToDelete);
+        contactsBefore.remove(index);
         Assert.assertEquals(contactsBefore, contactsAfter);
     }
 }

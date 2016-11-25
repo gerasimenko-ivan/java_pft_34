@@ -29,10 +29,10 @@ public class ContactModificationTests extends TestBase {
     public void testContactModification() {
         List<ContactData> contactsBefore = app.getContactHelper().getContactList();
 
-        int contactToEdit = rnd.getInt(0, contactsBefore.size() - 1);
+        int index = rnd.getInt(0, contactsBefore.size() - 1);
         ContactData contact = new ContactData();
         contact
-                .setId(contactsBefore.get(contactToEdit).getId())
+                .setId(contactsBefore.get(index).getId())
                 .setFirstname(rnd.getFirstnameEng())
                 .setLastname(rnd.getSurnameEng())
                 .setTitle("Ms.")
@@ -40,12 +40,12 @@ public class ContactModificationTests extends TestBase {
                 .setHomePhone("(852) 2877-8933")
                 .setEmail("hongkong@ihg.com");
 
-        app.getContactHelper().modifyContact(contactToEdit, contact);
+        app.getContactHelper().modifyContact(index, contact);
 
         List<ContactData> contactsAfter = app.getContactHelper().getContactList();
         Assert.assertEquals(contactsAfter.size(), contactsBefore.size());
 
-        contactsBefore.remove(contactToEdit);
+        contactsBefore.remove(index);
         contactsBefore.add(contact);
         Comparator<? super ContactData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
         contactsBefore.sort(byId);
