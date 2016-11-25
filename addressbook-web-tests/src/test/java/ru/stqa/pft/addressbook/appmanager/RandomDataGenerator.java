@@ -9,17 +9,17 @@ public class RandomDataGenerator {
     }
 
     public String getFirstnameEng() {
-        String[] firstnames = {"Bob", "Pit", "Sam", "Ted", "Yen"};
+        String[] firstnames = {"Alex", "Bob", "Elvise", "Glenn", "Henrich", "Jack", "Pit", "Sam", "Ted", "Yen"};
         return firstnames[getInt(0, firstnames.length - 1)];
     }
 
     public String getSurnameEng() {
-        String[] surnames = {"Davis", "Doe", "Lee", "Smith", "Tramp"};
+        String[] surnames = {"Biber", "Clapton", "Davis", "Doe", "Lee", "Miller", "Smith", "Tramp", "Trammel"};
         return surnames[getInt(0, surnames.length - 1)];
     }
 
     public String getAddressEng() {
-        String[] litera = {"", "A", "B", "C"};
+        String[] litera = {"", "", "", "", "", "A", "B", "C", "/4"};
         String[] streets = {"Baker Street", "Wall Street", "West Road"};
         String[] cities = {"Boston", "Lisboa", "Moscow", "New York", "Roma"};
         return getInt(1, 999) + litera[getInt(0, litera.length - 1)] +
