@@ -20,11 +20,11 @@ public class GroupDeletionTests extends TestBase {
     @Test
     public void testGroupDeletion() {
 
-        List<GroupData> groupsBefore = app.group().getGroupList();
+        List<GroupData> groupsBefore = app.group().getList();
         int groupToDelete = rnd.getInt(0, groupsBefore.size() - 1);
         app.group().delete(groupToDelete);
 
-        List<GroupData> groupsAfter = app.group().getGroupList();
+        List<GroupData> groupsAfter = app.group().getList();
         Assert.assertEquals(groupsAfter.size(), groupsBefore.size() - 1);
 
         groupsBefore.remove(groupToDelete);
