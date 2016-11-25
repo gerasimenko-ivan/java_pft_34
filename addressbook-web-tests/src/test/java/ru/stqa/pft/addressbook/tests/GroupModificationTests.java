@@ -24,15 +24,15 @@ public class GroupModificationTests extends TestBase {
     @Test
     public void testGroupModification() {
         List<GroupData> groupsBefore = app.group().getList();
-        int groupToEdit = rnd.getInt(0, groupsBefore.size() - 1);
-        GroupData group = new GroupData(groupsBefore.get(groupToEdit).getId(), "new-test" + rnd.getInt(1001, 2000), "new-test2", "new-test3");
+        int index = rnd.getInt(0, groupsBefore.size() - 1);
+        GroupData group = new GroupData(groupsBefore.get(index).getId(), "new-test" + rnd.getInt(1001, 2000), "new-test2", "new-test3");
 
-        app.group().modifyGroup(groupToEdit, group);
+        app.group().modifyGroup(index, group);
 
         List<GroupData> groupsAfter = app.group().getList();
         Assert.assertEquals(groupsAfter.size(), groupsBefore.size());
 
-        groupsBefore.remove(groupToEdit);
+        groupsBefore.remove(index);
         groupsBefore.add(group);
         Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
         groupsBefore.sort(byId);
