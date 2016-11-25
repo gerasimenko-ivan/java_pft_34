@@ -22,7 +22,7 @@ public class GroupDeletionTests extends TestBase {
     public void testGroupDeletion() {
 
         List<GroupData> groupsBefore = app.getGroupHelper().getGroupList();
-        int groupToDelete = groupsBefore.size() - 1;
+        int groupToDelete = rnd.getInt(0, groupsBefore.size() - 1);
         app.getGroupHelper().deleteGroup(groupToDelete);
 
         List<GroupData> groupsAfter = app.getGroupHelper().getGroupList();
