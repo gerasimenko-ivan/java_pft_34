@@ -87,6 +87,10 @@ public class GroupHelper extends HelperBase {
         return new HashSet<GroupData>(list());
     }
 
+    public GroupData getByIndex(int index) {
+        return list().get(index);
+    }
+
     //////////////////////////// complex methods //////////////////////////
 
     public void create(GroupData group) {
