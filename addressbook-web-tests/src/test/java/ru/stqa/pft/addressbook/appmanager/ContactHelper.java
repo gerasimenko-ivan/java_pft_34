@@ -8,7 +8,9 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by gis on 02.11.2016.
@@ -80,6 +82,10 @@ public class ContactHelper extends HelperBase {
             contacts.add(contact);
         }
         return contacts;
+    }
+
+    public Set<ContactData> hashSet() {
+        return new HashSet<ContactData>(list());
     }
 
     private void gotoHomePage() {

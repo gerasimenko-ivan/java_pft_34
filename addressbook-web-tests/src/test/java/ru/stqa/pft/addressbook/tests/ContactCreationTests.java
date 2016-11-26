@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.tests;
 
+import javafx.scene.effect.SepiaTone;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -8,6 +9,7 @@ import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class ContactCreationTests extends TestBase {
     private String groupName = "test1";
@@ -24,8 +26,7 @@ public class ContactCreationTests extends TestBase {
     @Test
     public void testContactCreation() {
         app.navigateTo().home();
-        List<ContactData> contactsBefore = app.contact().list();
-
+        Set<ContactData> contactsBefore = app.contact().hashSet();
         ContactData contact = new ContactData()
                 .withId(Integer.MAX_VALUE)
                 .withFirstname(rnd.getFirstnameEng())
@@ -40,13 +41,10 @@ public class ContactCreationTests extends TestBase {
 
         // assertions
 
-        List<ContactData> contactsAfter = app.contact().list();
+        Set<ContactData> contactsAfter = app.contact().hashSet();
         Assert.assertEquals(contactsAfter.size(), contactsBefore.size() + 1);
 
         contactsBefore.add(contact);
-        Comparator<? super ContactData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-        contactsBefore.sort(byId);
-        contactsAfter.sort(byId);
         Assert.assertEquals(contactsAfter, contactsBefore);
     }
 
