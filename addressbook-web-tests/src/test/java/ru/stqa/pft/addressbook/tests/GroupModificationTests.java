@@ -9,6 +9,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 /**
  * Created by gis on 07.11.2016.
  */
@@ -40,6 +43,6 @@ public class GroupModificationTests extends TestBase {
 
         groupsBefore.remove(groupOld);
         groupsBefore.add(groupNew);
-        Assert.assertEquals(groupsBefore, groupsAfter);
+        assertThat(groupsAfter, equalTo(groupsBefore));
     }
 }
