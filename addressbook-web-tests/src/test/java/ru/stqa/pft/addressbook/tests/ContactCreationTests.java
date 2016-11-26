@@ -28,7 +28,6 @@ public class ContactCreationTests extends TestBase {
         app.navigateTo().home();
         Set<ContactData> contactsBefore = app.contact().hashSet();
         ContactData contact = new ContactData()
-                .withId(Integer.MAX_VALUE)
                 .withFirstname(rnd.getFirstnameEng())
                 .withMiddlename("E.")
                 .withLastname(rnd.getSurnameEng())
@@ -44,6 +43,7 @@ public class ContactCreationTests extends TestBase {
         Set<ContactData> contactsAfter = app.contact().hashSet();
         Assert.assertEquals(contactsAfter.size(), contactsBefore.size() + 1);
 
+        contact.withId(contactsAfter.stream().mapToInt((c) -> c.getId()).max().getAsInt());
         contactsBefore.add(contact);
         Assert.assertEquals(contactsAfter, contactsBefore);
     }
