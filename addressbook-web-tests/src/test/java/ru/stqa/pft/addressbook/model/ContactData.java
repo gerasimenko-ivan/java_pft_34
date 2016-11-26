@@ -25,7 +25,7 @@ public class ContactData {
 
     public int getId() { return id; }
 
-    public ContactData setId(int id) {
+    public ContactData withId(int id) {
         this.id = id;
         return this;
     }
@@ -34,7 +34,7 @@ public class ContactData {
         return firstname;
     }
 
-    public ContactData setFirstname(String firstname) {
+    public ContactData withFirstname(String firstname) {
         this.firstname = firstname;
         return this;
     }
@@ -43,7 +43,7 @@ public class ContactData {
         return middlename;
     }
 
-    public ContactData setMiddlename(String middlename) {
+    public ContactData withMiddlename(String middlename) {
         this.middlename = middlename;
         return this;
     }
@@ -52,7 +52,7 @@ public class ContactData {
         return lastname;
     }
 
-    public ContactData setLastname(String lastname) {
+    public ContactData withLastname(String lastname) {
         this.lastname = lastname;
         return this;
     }
@@ -61,7 +61,7 @@ public class ContactData {
         return title;
     }
 
-    public ContactData setTitle(String title) {
+    public ContactData withTitle(String title) {
         this.title = title;
         return this;
     }
@@ -70,7 +70,7 @@ public class ContactData {
         return address;
     }
 
-    public ContactData setAddress(String address) {
+    public ContactData withAddress(String address) {
         this.address = address;
         return this;
     }
@@ -79,7 +79,7 @@ public class ContactData {
         return homePhone;
     }
 
-    public ContactData setHomePhone(String homePhone) {
+    public ContactData withHomePhone(String homePhone) {
         this.homePhone = homePhone;
         return this;
     }
@@ -88,7 +88,7 @@ public class ContactData {
         return email;
     }
 
-    public ContactData setEmail(String email) {
+    public ContactData withEmail(String email) {
         this.email = email;
         return this;
     }
@@ -97,7 +97,7 @@ public class ContactData {
         return group;
     }
 
-    public ContactData setGroup(String group) {
+    public ContactData withGroup(String group) {
         this.group = group;
         return this;
     }

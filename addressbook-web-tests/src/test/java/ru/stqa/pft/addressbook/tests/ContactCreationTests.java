@@ -26,17 +26,16 @@ public class ContactCreationTests extends TestBase {
         app.navigateTo().home();
         List<ContactData> contactsBefore = app.contact().list();
 
-        ContactData contact = new ContactData();
-        contact
-                .setId(Integer.MAX_VALUE)
-                .setFirstname(rnd.getFirstnameEng())
-                .setMiddlename("E.")
-                .setLastname(rnd.getSurnameEng())
-                .setTitle("Dr.")
-                .setAddress(rnd.getAddressEng())
-                .setHomePhone("9(2131)324-33-33")
-                .setEmail("test@test.ts")
-                .setGroup(groupName);
+        ContactData contact = new ContactData()
+                .withId(Integer.MAX_VALUE)
+                .withFirstname(rnd.getFirstnameEng())
+                .withMiddlename("E.")
+                .withLastname(rnd.getSurnameEng())
+                .withTitle("Dr.")
+                .withAddress(rnd.getAddressEng())
+                .withHomePhone("9(2131)324-33-33")
+                .withEmail("test@test.ts")
+                .withGroup(groupName);
         app.contact().create(contact);
 
         // assertions

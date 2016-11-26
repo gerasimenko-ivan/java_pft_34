@@ -18,8 +18,8 @@ public class ContactDeletionTests extends TestBase {
         if (! app.contact().doesExist()) {
             ContactData contactData = new ContactData();
             contactData
-                    .setFirstname("Testname")
-                    .setLastname("Testsurname");
+                    .withFirstname("Testname")
+                    .withLastname("Testsurname");
             app.contact().create(contactData);
         }
     }

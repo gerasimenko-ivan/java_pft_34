@@ -19,8 +19,8 @@ public class ContactModificationTests extends TestBase {
         if (! app.contact().doesExist()) {
             ContactData contactData = new ContactData();
             contactData
-                    .setFirstname("Testname")
-                    .setLastname("Testsurname");
+                    .withFirstname("Testname")
+                    .withLastname("Testsurname");
             app.contact().create(contactData);
         }
     }
@@ -30,15 +30,14 @@ public class ContactModificationTests extends TestBase {
         List<ContactData> contactsBefore = app.contact().list();
 
         int index = rnd.getInt(0, contactsBefore.size() - 1);
-        ContactData contact = new ContactData();
-        contact
-                .setId(contactsBefore.get(index).getId())
-                .setFirstname(rnd.getFirstnameEng())
-                .setLastname(rnd.getSurnameEng())
-                .setTitle("Ms.")
-                .setAddress(rnd.getAddressEng())
-                .setHomePhone("(852) 2877-8933")
-                .setEmail("hongkong@ihg.com");
+        ContactData contact = new ContactData()
+                .withId(contactsBefore.get(index).getId())
+                .withFirstname(rnd.getFirstnameEng())
+                .withLastname(rnd.getSurnameEng())
+                .withTitle("Ms.")
+                .withAddress(rnd.getAddressEng())
+                .withHomePhone("(852) 2877-8933")
+                .withEmail("hongkong@ihg.com");
 
         app.contact().modify(index, contact);
 
