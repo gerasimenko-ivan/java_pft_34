@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by gis on 07.11.2016.
@@ -26,9 +27,10 @@ public class ContactDeletionTests extends TestBase {
 
     @Test
     public void testContactDeletion() {
-        List<ContactData> contactsBefore = app.contact().list();
+        Set<ContactData> contactsBefore = app.contact().hashSet();
 
         int index = rnd.getInt(0, contactsBefore.size() - 1);
+        ContactData deletedContact = app.contact().getByIndex(index);
         app.contact().select(index);
         app.contact().deleteSelected();
         app.getAlertHelper().accept();
@@ -36,10 +38,10 @@ public class ContactDeletionTests extends TestBase {
 
         // assertions
 
-        List<ContactData> contactsAfter = app.contact().list();
+        Set<ContactData> contactsAfter = app.contact().hashSet();
         Assert.assertEquals(contactsAfter.size(), contactsBefore.size() - 1);
 
-        contactsBefore.remove(index);
+        contactsBefore.remove(deletedContact);
         Assert.assertEquals(contactsBefore, contactsAfter);
     }
 }
