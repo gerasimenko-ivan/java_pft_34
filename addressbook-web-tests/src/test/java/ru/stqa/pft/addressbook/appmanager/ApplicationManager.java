@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * Created by gis on 01.11.2016.
  */
 public class ApplicationManager {
-    WebDriver wd;
+    private WebDriver wd;
 
     private ContactHelper contactHelper;
     private NavigationHelper navigationHelper;

@@ -40,11 +40,11 @@ public class GroupHelper extends HelperBase {
     }
 
     public void selectGroup(int index) {
-        wd.findElements(By.name("selected[]")).get(index).click();
+        findElements(By.name("selected[]")).get(index).click();
     }
 
     private void selectGroupById(int id) {
-        wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+        findElement(By.cssSelector("input[value='" + id + "']")).click();
     }
 
     public void initGroupModification() {
@@ -68,12 +68,12 @@ public class GroupHelper extends HelperBase {
     }
 
     public int getGroupCount() {
-        return wd.findElements(By.name("selected[]")).size();
+        return findElements(By.name("selected[]")).size();
     }
 
     public List<GroupData> list() {
         List<GroupData> groups = new ArrayList<GroupData>();
-        List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+        List<WebElement> elements = findElements(By.cssSelector("span.group"));
         for (WebElement element : elements) {
             String name = element.getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));

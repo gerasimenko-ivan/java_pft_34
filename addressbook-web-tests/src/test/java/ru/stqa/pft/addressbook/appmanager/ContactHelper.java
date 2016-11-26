@@ -36,7 +36,7 @@ public class ContactHelper extends HelperBase {
 
         if (formAction == FormAction.CREATION) {
             if (contactData.getGroup() != null) {
-                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+                new Select(findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
             }
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
@@ -55,7 +55,7 @@ public class ContactHelper extends HelperBase {
     public void deleteSelected() { click(By.xpath("//input[@onclick='DeleteSel()']")); }
 
     public void initContactModification(int index) {
-        wd.findElements(By.cssSelector("img[src='icons/pencil.png']")).get(index).click();
+        findElements(By.cssSelector("img[src='icons/pencil.png']")).get(index).click();
     }
 
     public void submitContactModification() { click(By.name("update")); }
@@ -65,12 +65,12 @@ public class ContactHelper extends HelperBase {
     }
 
     public int getContactCount() {
-        return wd.findElements(By.cssSelector("img[src='icons/pencil.png']")).size();
+        return findElements(By.cssSelector("img[src='icons/pencil.png']")).size();
     }
 
     public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<ContactData>();
-        List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
+        List<WebElement> elements = findElements(By.xpath("//tr[@name='entry']"));
         for (WebElement element : elements) {
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
             String lastname = element.findElement(By.xpath("td[2]")).getText();

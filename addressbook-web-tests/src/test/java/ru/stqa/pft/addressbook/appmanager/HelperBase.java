@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -13,6 +14,14 @@ public class HelperBase {
 
     public HelperBase(WebDriver wd) {
         this.wd = wd;
+    }
+
+    protected WebElement findElement(By locator) {
+        return wd.findElement(locator);
+    }
+
+    protected List<WebElement> findElements(By locator) {
+        return wd.findElements(locator);
     }
 
     public enum FormAction {CREATION, MODIFICATION};
