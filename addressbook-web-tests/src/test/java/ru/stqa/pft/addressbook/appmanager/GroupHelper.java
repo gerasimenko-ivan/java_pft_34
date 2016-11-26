@@ -6,7 +6,9 @@ import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by gis on 02.11.2016.
@@ -75,6 +77,10 @@ public class GroupHelper extends HelperBase {
             groups.add(group);
         }
         return groups;
+    }
+
+    public Set<GroupData> hashSet() {
+        return new HashSet<GroupData>(list());
     }
 
     //////////////////////////// complex methods //////////////////////////
