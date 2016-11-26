@@ -58,13 +58,6 @@ public class ContactHelper extends HelperBase {
 
     public void submitContactModification() { click(By.name("update")); }
 
-    public void create(ContactData contact) {
-        initContactCreation();
-        fillContactForm(contact, FormAction.CREATION);
-        submitContactCreation();
-        gotoHomePage();
-    }
-
     public boolean doesExist() {
         return isElementPresent(By.cssSelector("img[src='icons/pencil.png']"));
     }
@@ -89,18 +82,27 @@ public class ContactHelper extends HelperBase {
         return contacts;
     }
 
-    public void modify(int index, ContactData newContact) {
-        initContactModification(index);
-        fillContactForm(newContact, FormAction.MODIFICATION);
-        submitContactModification();
-        gotoHomePage();
-    }
-
     private void gotoHomePage() {
         if (isElementPresent(By.id("maintable"))) {
             return;
         }
         click(By.linkText("home page"));
         find(By.id("maintable"));
+    }
+
+    //////////////////////////// complex methods //////////////////////////
+
+    public void create(ContactData contact) {
+        initContactCreation();
+        fillContactForm(contact, FormAction.CREATION);
+        submitContactCreation();
+        gotoHomePage();
+    }
+
+    public void modify(int index, ContactData newContact) {
+        initContactModification(index);
+        fillContactForm(newContact, FormAction.MODIFICATION);
+        submitContactModification();
+        gotoHomePage();
     }
 }
