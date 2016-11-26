@@ -39,7 +39,7 @@ public class GroupModificationTests extends TestBase {
         app.group().modifyGroup(index, groupNew);
 
         Set<GroupData> groupsAfter = app.group().hashSet();
-        Assert.assertEquals(groupsAfter.size(), groupsBefore.size());
+        assertThat(groupsAfter.size(), equalTo(groupsBefore.size()));
 
         groupsBefore.remove(groupOld);
         groupsBefore.add(groupNew);

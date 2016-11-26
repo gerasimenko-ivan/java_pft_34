@@ -8,6 +8,9 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import java.util.List;
 import java.util.Set;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 /**
  * Created by gis on 07.11.2016.
  */
@@ -39,9 +42,9 @@ public class ContactDeletionTests extends TestBase {
         // assertions
 
         Set<ContactData> contactsAfter = app.contact().hashSet();
-        Assert.assertEquals(contactsAfter.size(), contactsBefore.size() - 1);
+        assertThat(contactsAfter.size(), equalTo(contactsBefore.size() - 1));
 
         contactsBefore.remove(deletedContact);
-        Assert.assertEquals(contactsBefore, contactsAfter);
+        assertThat(contactsAfter, equalTo(contactsBefore));
     }
 }

@@ -11,6 +11,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class ContactCreationTests extends TestBase {
     private String groupName = "test1";
 
@@ -41,11 +44,11 @@ public class ContactCreationTests extends TestBase {
         // assertions
 
         Set<ContactData> contactsAfter = app.contact().hashSet();
-        Assert.assertEquals(contactsAfter.size(), contactsBefore.size() + 1);
+        assertThat(contactsAfter.size(), equalTo(contactsBefore.size() + 1));
 
         contact.withId(contactsAfter.stream().mapToInt((c) -> c.getId()).max().getAsInt());
         contactsBefore.add(contact);
-        Assert.assertEquals(contactsAfter, contactsBefore);
+        assertThat(contactsAfter, equalTo(contactsBefore));
     }
 
 }

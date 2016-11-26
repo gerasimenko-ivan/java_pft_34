@@ -9,6 +9,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 /**
  * Created by gis on 09.11.2016.
  */
@@ -46,10 +49,10 @@ public class ContactModificationTests extends TestBase {
         // assertions
 
         Set<ContactData> contactsAfter = app.contact().hashSet();
-        Assert.assertEquals(contactsAfter.size(), contactsBefore.size());
+        assertThat(contactsAfter.size(), equalTo(contactsBefore.size()));
 
         contactsBefore.remove(contactOld);
         contactsBefore.add(contactNew);
-        Assert.assertEquals(contactsAfter, contactsBefore);
+        assertThat(contactsAfter, equalTo(contactsBefore));
     }
 }
