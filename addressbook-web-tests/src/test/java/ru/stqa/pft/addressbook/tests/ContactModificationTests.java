@@ -7,6 +7,7 @@ import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by gis on 09.11.2016.
@@ -27,11 +28,12 @@ public class ContactModificationTests extends TestBase {
 
     @Test
     public void testContactModification() {
-        List<ContactData> contactsBefore = app.contact().list();
+        Set<ContactData> contactsBefore = app.contact().hashSet();
 
         int index = rnd.getInt(0, contactsBefore.size() - 1);
-        ContactData contact = new ContactData()
-                .withId(contactsBefore.get(index).getId())
+        ContactData contactOld = app.contact().getByIndex(index);
+        ContactData contactNew = new ContactData()
+                .withId(contactOld.getId())
                 .withFirstname(rnd.getFirstnameEng())
                 .withLastname(rnd.getSurnameEng())
                 .withTitle("Ms.")
@@ -39,18 +41,15 @@ public class ContactModificationTests extends TestBase {
                 .withHomePhone("(852) 2877-8933")
                 .withEmail("hongkong@ihg.com");
 
-        app.contact().modify(index, contact);
+        app.contact().modify(index, contactNew);
 
         // assertions
 
-        List<ContactData> contactsAfter = app.contact().list();
+        Set<ContactData> contactsAfter = app.contact().hashSet();
         Assert.assertEquals(contactsAfter.size(), contactsBefore.size());
 
-        contactsBefore.remove(index);
-        contactsBefore.add(contact);
-        Comparator<? super ContactData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-        contactsBefore.sort(byId);
-        contactsAfter.sort(byId);
+        contactsBefore.remove(contactOld);
+        contactsBefore.add(contactNew);
         Assert.assertEquals(contactsAfter, contactsBefore);
     }
 }
