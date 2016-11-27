@@ -90,10 +90,6 @@ public class ContactHelper extends HelperBase {
         return new Contacts(list());
     }
 
-    public ContactData getByIndex(int index) {
-        return list().get(index);
-    }
-
     private void gotoHomePage() {
         if (isElementPresent(By.id("maintable"))) {
             return;

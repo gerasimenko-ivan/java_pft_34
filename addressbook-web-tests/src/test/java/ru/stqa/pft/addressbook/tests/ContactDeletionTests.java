@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.Set;
+import java.util.ArrayList;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -32,7 +32,7 @@ public class ContactDeletionTests extends TestBase {
         Contacts contactsBefore = app.contact().all();
 
         int index = rnd.getInt(0, contactsBefore.size() - 1);
-        ContactData deletedContact = app.contact().getByIndex(index);
+        ContactData deletedContact = new ArrayList<ContactData>(contactsBefore).get(index);
         app.contact().select(index);
         app.contact().deleteSelected();
         app.getAlertHelper().accept();
