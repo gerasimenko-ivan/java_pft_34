@@ -5,8 +5,6 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
-import java.util.ArrayList;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -26,8 +24,7 @@ public class GroupModificationTests extends TestBase {
     @Test
     public void testGroupModification() {
         Groups groupsBefore = app.group().all();
-        int index = rnd.getInt(0, groupsBefore.size() - 1);
-        GroupData groupOld = new ArrayList<GroupData>(groupsBefore).get(index);
+        GroupData groupOld = groupsBefore.getRandom();
         GroupData groupNew = new GroupData()
                 .withId(groupOld.getId())
                 .withName("new-test-" + rnd.getInt(1001, 2000))
@@ -36,6 +33,7 @@ public class GroupModificationTests extends TestBase {
 
         app.group().modifyById(groupOld.getId(), groupNew);
 
+        // assertions
         Groups groupsAfter = app.group().all();
         assertThat(groupsAfter.size(), equalTo(groupsBefore.size()));
         assertThat(groupsAfter, equalTo(groupsBefore.withModified(groupOld, groupNew)));

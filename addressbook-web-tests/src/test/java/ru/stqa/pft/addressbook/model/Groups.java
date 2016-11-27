@@ -2,6 +2,7 @@ package ru.stqa.pft.addressbook.model;
 
 import com.google.common.collect.ForwardingSet;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -47,5 +48,11 @@ public class Groups extends ForwardingSet<GroupData> {
         groups.remove(groupOld);
         groups.add(groupNew);
         return groups;
+    }
+
+    public GroupData getRandom() {
+        List<GroupData> groups = new ArrayList<GroupData>(this.delegate);
+        int index = (int)(Math.random() * groups.size());
+        return groups.get(index);
     }
 }
