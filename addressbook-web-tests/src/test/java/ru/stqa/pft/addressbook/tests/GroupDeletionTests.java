@@ -27,7 +27,7 @@ public class GroupDeletionTests extends TestBase {
         int index = rnd.getInt(0, groupsBefore.size() - 1);
         GroupData deletedGroup = new ArrayList<GroupData>(groupsBefore).get(index);
 
-        app.group().delete(index);
+        app.group().deleteById(deletedGroup.getId());
 
         // assertions
         Groups groupsAfter = app.group().all();

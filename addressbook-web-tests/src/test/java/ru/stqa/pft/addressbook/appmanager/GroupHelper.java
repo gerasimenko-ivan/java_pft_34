@@ -97,8 +97,16 @@ public class GroupHelper extends HelperBase {
         returnToGroupPage();
     }
 
-    public void modifyGroup(int index, GroupData newGroup) {
+    public void modify(int index, GroupData newGroup) {
         selectGroup(index);
+        initGroupModification();
+        fillGroupForm(newGroup);
+        submitGroupModification();
+        returnToGroupPage();
+    }
+
+    public void modifyById(int modifiedGroupId, GroupData newGroup) {
+        selectGroupById(modifiedGroupId);
         initGroupModification();
         fillGroupForm(newGroup);
         submitGroupModification();
@@ -111,8 +119,8 @@ public class GroupHelper extends HelperBase {
         returnToGroupPage();
     }
 
-    public void delete(GroupData group) {
-        selectGroupById(group.getId());
+    public void deleteById(int id) {
+        selectGroupById(id);
         deleteSelectedGroups();
         returnToGroupPage();
     }

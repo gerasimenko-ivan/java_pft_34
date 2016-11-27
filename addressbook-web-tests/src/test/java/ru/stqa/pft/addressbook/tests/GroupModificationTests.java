@@ -6,7 +6,6 @@ import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -35,7 +34,7 @@ public class GroupModificationTests extends TestBase {
                 .withHeader("new-test2")
                 .withFooter("new-test3");
 
-        app.group().modifyGroup(index, groupNew);
+        app.group().modifyById(groupOld.getId(), groupNew);
 
         Groups groupsAfter = app.group().all();
         assertThat(groupsAfter.size(), equalTo(groupsBefore.size()));
