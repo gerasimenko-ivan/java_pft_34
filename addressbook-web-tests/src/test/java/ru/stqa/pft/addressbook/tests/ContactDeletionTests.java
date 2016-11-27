@@ -33,7 +33,7 @@ public class ContactDeletionTests extends TestBase {
 
         int index = rnd.getInt(0, contactsBefore.size() - 1);
         ContactData deletedContact = new ArrayList<ContactData>(contactsBefore).get(index);
-        app.contact().select(index);
+        app.contact().selectById(deletedContact.getId());
         app.contact().deleteSelected();
         app.getAlertHelper().accept();
         app.navigateTo().home();

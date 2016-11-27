@@ -42,7 +42,7 @@ public class ContactModificationTests extends TestBase {
                 .withHomePhone("(852) 2877-8933")
                 .withEmail("hongkong@ihg.com");
 
-        app.contact().modify(index, contactNew);
+        app.contact().modifyById(contactOld.getId(), contactNew);
 
         // assertions
 

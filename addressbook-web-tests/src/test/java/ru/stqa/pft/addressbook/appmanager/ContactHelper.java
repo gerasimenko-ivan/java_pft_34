@@ -54,10 +54,18 @@ public class ContactHelper extends HelperBase {
         click(By.xpath(".//*[@id='maintable']/tbody/tr[" + (2 + index) + "]/td[1]/input"));  // contact tr starts from 2
     }
 
+    public void selectById(int id) {
+        click(By.xpath(".//*/input[@id='" + id + "']"));
+    }
+
     public void deleteSelected() { click(By.xpath("//input[@onclick='DeleteSel()']")); }
 
     public void initContactModification(int index) {
         findElements(By.cssSelector("img[src='icons/pencil.png']")).get(index).click();
+    }
+
+    private void initContactModificationById(int id) {
+        findElement(By.xpath(".//*/a[@href='edit.php?id=" + id + "']")).click();
     }
 
     public void submitContactModification() { click(By.name("update")); }
@@ -109,6 +117,13 @@ public class ContactHelper extends HelperBase {
 
     public void modify(int index, ContactData newContact) {
         initContactModification(index);
+        fillContactForm(newContact, FormAction.MODIFICATION);
+        submitContactModification();
+        gotoHomePage();
+    }
+
+    public void modifyById(int oldContactId, ContactData newContact) {
+        initContactModificationById(oldContactId);
         fillContactForm(newContact, FormAction.MODIFICATION);
         submitContactModification();
         gotoHomePage();
