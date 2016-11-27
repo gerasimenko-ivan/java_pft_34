@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.Set;
 
@@ -22,17 +23,16 @@ public class GroupDeletionTests extends TestBase {
     @Test
     public void testGroupDeletion() {
 
-        Set<GroupData> groupsBefore = app.group().all();
+        Groups groupsBefore = app.group().all();
         int index = rnd.getInt(0, groupsBefore.size() - 1);
         GroupData deletedGroup = app.group().getByIndex(index);
 
         app.group().delete(index);
 
-        Set<GroupData> groupsAfter = app.group().all();
+        // assertions
+        Groups groupsAfter = app.group().all();
         assertThat(groupsAfter.size(), equalTo(groupsBefore.size() - 1));
-
-        groupsBefore.remove(deletedGroup);
-        assertThat(groupsAfter, equalTo(groupsBefore));
+        assertThat(groupsAfter, equalTo(groupsBefore.without(deletedGroup)));
     }
 
 }

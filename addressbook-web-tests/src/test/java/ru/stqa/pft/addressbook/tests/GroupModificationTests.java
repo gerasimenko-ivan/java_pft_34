@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.Set;
 
@@ -24,7 +25,7 @@ public class GroupModificationTests extends TestBase {
 
     @Test
     public void testGroupModification() {
-        Set<GroupData> groupsBefore = app.group().all();
+        Groups groupsBefore = app.group().all();
         int index = rnd.getInt(0, groupsBefore.size() - 1);
         GroupData groupOld = app.group().getByIndex(index);
         GroupData groupNew = new GroupData()
@@ -35,11 +36,8 @@ public class GroupModificationTests extends TestBase {
 
         app.group().modifyGroup(index, groupNew);
 
-        Set<GroupData> groupsAfter = app.group().all();
+        Groups groupsAfter = app.group().all();
         assertThat(groupsAfter.size(), equalTo(groupsBefore.size()));
-
-        groupsBefore.remove(groupOld);
-        groupsBefore.add(groupNew);
-        assertThat(groupsAfter, equalTo(groupsBefore));
+        assertThat(groupsAfter, equalTo(groupsBefore.without(groupOld).withAdded(groupNew)));
     }
 }
