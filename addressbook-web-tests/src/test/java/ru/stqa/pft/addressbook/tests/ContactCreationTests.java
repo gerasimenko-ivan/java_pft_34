@@ -1,14 +1,11 @@
 package ru.stqa.pft.addressbook.tests;
 
-import javafx.scene.effect.SepiaTone;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 
-import java.util.Comparator;
-import java.util.List;
 import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -29,7 +26,7 @@ public class ContactCreationTests extends TestBase {
     @Test
     public void testContactCreation() {
         app.navigateTo().home();
-        Set<ContactData> contactsBefore = app.contact().hashSet();
+        Contacts contactsBefore = app.contact().all();
         ContactData contact = new ContactData()
                 .withFirstname(rnd.getFirstnameEng())
                 .withMiddlename("E.")
@@ -42,13 +39,11 @@ public class ContactCreationTests extends TestBase {
         app.contact().create(contact);
 
         // assertions
-
-        Set<ContactData> contactsAfter = app.contact().hashSet();
+        Contacts contactsAfter = app.contact().all();
         assertThat(contactsAfter.size(), equalTo(contactsBefore.size() + 1));
 
         contact.withId(contactsAfter.stream().mapToInt((c) -> c.getId()).max().getAsInt());
-        contactsBefore.add(contact);
-        assertThat(contactsAfter, equalTo(contactsBefore));
+        assertThat(contactsAfter, equalTo(contactsBefore.withAdded(contact)));
     }
 
 }

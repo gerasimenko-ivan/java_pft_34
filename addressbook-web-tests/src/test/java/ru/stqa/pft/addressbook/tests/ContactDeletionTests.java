@@ -1,11 +1,10 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.List;
 import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -30,7 +29,7 @@ public class ContactDeletionTests extends TestBase {
 
     @Test
     public void testContactDeletion() {
-        Set<ContactData> contactsBefore = app.contact().hashSet();
+        Contacts contactsBefore = app.contact().all();
 
         int index = rnd.getInt(0, contactsBefore.size() - 1);
         ContactData deletedContact = app.contact().getByIndex(index);
@@ -41,10 +40,8 @@ public class ContactDeletionTests extends TestBase {
 
         // assertions
 
-        Set<ContactData> contactsAfter = app.contact().hashSet();
+        Contacts contactsAfter = app.contact().all();
         assertThat(contactsAfter.size(), equalTo(contactsBefore.size() - 1));
-
-        contactsBefore.remove(deletedContact);
-        assertThat(contactsAfter, equalTo(contactsBefore));
+        assertThat(contactsAfter, equalTo(contactsBefore.without(deletedContact)));
     }
 }
