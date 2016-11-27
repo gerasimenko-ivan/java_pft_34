@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
-import java.util.Set;
+import java.util.ArrayList;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -25,7 +25,7 @@ public class GroupDeletionTests extends TestBase {
 
         Groups groupsBefore = app.group().all();
         int index = rnd.getInt(0, groupsBefore.size() - 1);
-        GroupData deletedGroup = app.group().getByIndex(index);
+        GroupData deletedGroup = new ArrayList<GroupData>(groupsBefore).get(index);
 
         app.group().delete(index);
 

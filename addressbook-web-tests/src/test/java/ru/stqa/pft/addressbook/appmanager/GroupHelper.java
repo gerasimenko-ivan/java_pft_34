@@ -88,10 +88,6 @@ public class GroupHelper extends HelperBase {
         return new Groups(list());
     }
 
-    public GroupData getByIndex(int index) {
-        return list().get(index);
-    }
-
     //////////////////////////// complex methods //////////////////////////
 
     public void create(GroupData group) {
