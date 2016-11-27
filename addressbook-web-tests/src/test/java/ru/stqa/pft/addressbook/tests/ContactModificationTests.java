@@ -31,8 +31,7 @@ public class ContactModificationTests extends TestBase {
     public void testContactModification() {
         Contacts contactsBefore = app.contact().all();
 
-        int index = rnd.getInt(0, contactsBefore.size() - 1);
-        ContactData contactOld = new ArrayList<ContactData>(contactsBefore).get(index);
+        ContactData contactOld = contactsBefore.getRandom();
         ContactData contactNew = new ContactData()
                 .withId(contactOld.getId())
                 .withFirstname(rnd.getFirstnameEng())
