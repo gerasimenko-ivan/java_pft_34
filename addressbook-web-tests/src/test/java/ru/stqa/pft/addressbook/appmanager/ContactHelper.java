@@ -23,8 +23,11 @@ public class ContactHelper extends HelperBase {
         super(wd);
     }
 
+    private List<ContactData> contactsCache = null;
+
     public void submitContactCreation() {
         click(By.xpath("//*[@id='content']/*/input[@value='Enter']"));
+        contactsCache = null;
     }
 
     public void fillContactForm(ContactData contactData, FormAction formAction) {
@@ -58,7 +61,10 @@ public class ContactHelper extends HelperBase {
         click(By.xpath(".//*/input[@id='" + id + "']"));
     }
 
-    public void deleteSelected() { click(By.xpath("//input[@onclick='DeleteSel()']")); }
+    public void deleteSelected() {
+        click(By.xpath("//input[@onclick='DeleteSel()']"));
+        contactsCache = null;
+    }
 
     public void initContactModification(int index) {
         findElements(By.cssSelector("img[src='icons/pencil.png']")).get(index).click();
@@ -68,7 +74,10 @@ public class ContactHelper extends HelperBase {
         findElement(By.xpath(".//*/a[@href='edit.php?id=" + id + "']")).click();
     }
 
-    public void submitContactModification() { click(By.name("update")); }
+    public void submitContactModification() {
+        click(By.name("update"));
+        contactsCache = null;
+    }
 
     public boolean doesExist() {
         return isElementPresent(By.cssSelector("img[src='icons/pencil.png']"));
@@ -79,19 +88,23 @@ public class ContactHelper extends HelperBase {
     }
 
     public List<ContactData> list() {
-        List<ContactData> contacts = new ArrayList<ContactData>();
-        List<WebElement> elements = findElements(By.xpath("//tr[@name='entry']"));
-        for (WebElement element : elements) {
-            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-            String lastname = element.findElement(By.xpath("td[2]")).getText();
-            String firstname = element.findElement(By.xpath("td[3]")).getText();
-            ContactData contact = new ContactData();
-            contact.withId(id)
-                    .withFirstname(firstname)
-                    .withLastname(lastname);
-            contacts.add(contact);
+        if (contactsCache != null) {
+            return new ArrayList<ContactData>(contactsCache);
+        } else {
+            contactsCache = new ArrayList<ContactData>();
+            List<WebElement> elements = findElements(By.xpath("//tr[@name='entry']"));
+            for (WebElement element : elements) {
+                int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
+                String lastname = element.findElement(By.xpath("td[2]")).getText();
+                String firstname = element.findElement(By.xpath("td[3]")).getText();
+                ContactData contact = new ContactData();
+                contact.withId(id)
+                        .withFirstname(firstname)
+                        .withLastname(lastname);
+                contactsCache.add(contact);
+            }
+            return contactsCache;
         }
-        return contacts;
     }
 
     public Contacts all() {
