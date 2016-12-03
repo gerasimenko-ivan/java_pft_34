@@ -19,9 +19,8 @@ public class GroupCreationTests extends TestBase {
         app.group().create(group);
 
         // assertions
+        assertThat(app.group().getGroupCount(), equalTo(groupsBefore.size() + 1));
         Groups groupsAfter = app.group().all();
-        assertThat(groupsAfter.size(), equalTo(groupsBefore.size() + 1));
-
         group.withId(groupsAfter.stream().mapToInt((g) -> g.getId()).max().getAsInt());
         assertThat(groupsAfter, equalTo(groupsBefore.withAdded(group)));
     }
@@ -36,8 +35,8 @@ public class GroupCreationTests extends TestBase {
         app.group().create(group);
 
         // assertions
+        assertThat(app.group().getGroupCount(), equalTo(groupsBefore.size()));
         Groups groupsAfter = app.group().all();
-        assertThat(groupsAfter.size(), equalTo(groupsBefore.size()));
         assertThat(groupsAfter, equalTo(groupsBefore));
     }
 
