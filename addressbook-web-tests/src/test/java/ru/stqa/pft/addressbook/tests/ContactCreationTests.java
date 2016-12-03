@@ -32,6 +32,8 @@ public class ContactCreationTests extends TestBase {
                 .withTitle("Dr.")
                 .withAddress(rnd.getAddressEng())
                 .withHomePhone(rnd.getPhone())
+                .withMobilePhone(rnd.getPhone())
+                .withWorkPhone(rnd.getPhone())
                 .withEmail(rnd.getEmail())
                 .withGroup(groupName);
         app.contact().create(contact);

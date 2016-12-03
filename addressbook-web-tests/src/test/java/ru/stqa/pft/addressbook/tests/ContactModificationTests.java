@@ -37,6 +37,8 @@ public class ContactModificationTests extends TestBase {
                 .withTitle("Ms.")
                 .withAddress(rnd.getAddressEng())
                 .withHomePhone(rnd.getPhone())
+                .withMobilePhone(rnd.getPhone())
+                .withWorkPhone(rnd.getPhone())
                 .withEmail(rnd.getEmail());
 
         app.contact().modifyById(contactOld.getId(), contactNew);
