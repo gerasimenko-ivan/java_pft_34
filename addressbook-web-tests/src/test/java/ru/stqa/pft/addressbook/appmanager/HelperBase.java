@@ -50,8 +50,8 @@ public class HelperBase {
         return findElementWithTimeout(locator, 60, TimeUnit.SECONDS);
     }
 
-    protected String getAttributeValue(By locator, String attributeName) {
-        return "";
+    protected String getValueAttribute(By locator) {
+        return find(locator).getAttribute("value");
     }
 
     protected boolean isElementPresent(By locator) {

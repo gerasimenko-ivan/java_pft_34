@@ -7,12 +7,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by gis on 02.11.2016.
@@ -99,10 +96,20 @@ public class ContactHelper extends HelperBase {
                 int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
                 String lastname = element.findElement(By.xpath("td[2]")).getText();
                 String firstname = element.findElement(By.xpath("td[3]")).getText();
+                String address = element.findElement(By.xpath("td[4]")).getText();
+                String[] phones = element.findElement(By.xpath("td[6]")).getText().split("\n");
+                String email = element.findElement(By.xpath("td[5]/a")).getText();
+
                 ContactData contact = new ContactData();
-                contact.withId(id)
+                contact
+                        .withId(id)
                         .withFirstname(firstname)
-                        .withLastname(lastname);
+                        .withLastname(lastname)
+                        .withAddress(address)
+                        .withHomePhone(phones[0])
+                        .withMobilePhone(phones[1])
+                        .withWorkPhone(phones[2])
+                        .withEmail(email);
                 contactsCache.add(contact);
             }
             return contactsCache;
@@ -149,8 +156,16 @@ public class ContactHelper extends HelperBase {
         ContactData contact = new ContactData();
         contact
                 .withId(id)
-                .withFirstname("")
-                .withLastname("");
+                .withFirstname(getValueAttribute(By.name("firstname")))
+                .withMiddlename(getValueAttribute(By.name("middlename")))
+                .withLastname(getValueAttribute(By.name("lastname")))
+                .withTitle(getValueAttribute(By.name("title")))
+                .withAddress(getValueAttribute(By.name("address")))
+                .withHomePhone(getValueAttribute(By.name("home")))
+                .withMobilePhone(getValueAttribute(By.name("mobile")))
+                .withWorkPhone(getValueAttribute(By.name("work")))
+                .withEmail(getValueAttribute(By.name("email")));
+        wd.navigate().back();
         return contact;
     }
 }
