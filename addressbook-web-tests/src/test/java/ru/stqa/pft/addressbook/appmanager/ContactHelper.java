@@ -43,7 +43,7 @@ public class ContactHelper extends HelperBase {
 
         if (formAction == FormAction.CREATION) {
             if (contactData.getGroup() != null) {
-                new Select(findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+                new Select(find(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
             }
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
@@ -73,7 +73,7 @@ public class ContactHelper extends HelperBase {
     }
 
     private void initContactModificationById(int id) {
-        findElement(By.xpath(".//*/a[@href='edit.php?id=" + id + "']")).click();
+        find(By.xpath(".//*/a[@href='edit.php?id=" + id + "']")).click();
     }
 
     public void submitContactModification() {
@@ -142,5 +142,15 @@ public class ContactHelper extends HelperBase {
         fillContactForm(newContact, FormAction.MODIFICATION);
         submitContactModification();
         gotoHomePage();
+    }
+
+    public ContactData getInfoFromEditFormById(int id) {
+        initContactModificationById(id);
+        ContactData contact = new ContactData();
+        contact
+                .withId(id)
+                .withFirstname("")
+                .withLastname("");
+        return contact;
     }
 }

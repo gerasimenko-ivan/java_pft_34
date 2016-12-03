@@ -47,7 +47,7 @@ public class GroupHelper extends HelperBase {
     }
 
     private void selectGroupById(int id) {
-        findElement(By.cssSelector("input[value='" + id + "']")).click();
+        find(By.cssSelector("input[value='" + id + "']")).click();
     }
 
     public void initGroupModification() {
