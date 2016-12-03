@@ -19,8 +19,15 @@ public class ContactModificationTests extends TestBase {
         if (! app.contact().doesExist()) {
             ContactData contactData = new ContactData();
             contactData
-                    .withFirstname("Testname")
-                    .withLastname("Testsurname");
+                    .withFirstname(rnd.getFirstnameEng())
+                    .withMiddlename("E.")
+                    .withLastname(rnd.getSurnameEng())
+                    .withTitle("Dr.")
+                    .withAddress(rnd.getAddressEng())
+                    .withHomePhone(rnd.getPhone())
+                    .withMobilePhone(rnd.getPhone())
+                    .withWorkPhone(rnd.getPhone())
+                    .withEmail(rnd.getEmail());
             app.contact().create(contactData);
         }
     }
