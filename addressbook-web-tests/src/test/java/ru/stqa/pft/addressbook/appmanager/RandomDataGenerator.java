@@ -41,4 +41,22 @@ public class RandomDataGenerator {
         emailBuilder.append("@mail.com");
         return emailBuilder.toString();
     }
+
+    public String getPhone() {
+        StringBuilder phoneBuilder = new StringBuilder();
+        if (Math.random() > 0.5) {
+            phoneBuilder.append("+");
+        }
+        phoneBuilder.append(getInt(0, 9));
+        phoneBuilder.append("(");
+        phoneBuilder.append(getInt(100, 999));
+        phoneBuilder.append(")");
+        phoneBuilder.append(getInt(100, 999));
+        phoneBuilder.append("-");
+        phoneBuilder.append(getInt(10, 99));
+        phoneBuilder.append("-");
+        phoneBuilder.append(getInt(10, 99));
+
+        return phoneBuilder.toString();
+    }
 }
