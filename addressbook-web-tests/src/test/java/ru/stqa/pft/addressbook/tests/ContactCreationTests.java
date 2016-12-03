@@ -32,7 +32,7 @@ public class ContactCreationTests extends TestBase {
                 .withTitle("Dr.")
                 .withAddress(rnd.getAddressEng())
                 .withHomePhone("9(2131)324-33-33")
-                .withEmail("test@test.ts")
+                .withEmail(rnd.getEmail())
                 .withGroup(groupName);
         app.contact().create(contact);
 

@@ -26,4 +26,19 @@ public class RandomDataGenerator {
                 ", " + streets[getInt(0, streets.length - 1)] +
                 ", " + cities[getInt(0, cities.length - 1)];
     }
+
+    public String getEmail() {
+        StringBuilder emailBuilder = new StringBuilder();
+        emailBuilder.append(getFirstnameEng());
+        if(Math.random() > 0.5) {
+            emailBuilder.append(".");
+        }
+        emailBuilder.append(getSurnameEng());
+        if(Math.random() > 0.2) {
+            emailBuilder.append(getInt(0, 99999999));
+        }
+
+        emailBuilder.append("@mail.com");
+        return emailBuilder.toString();
+    }
 }

@@ -37,7 +37,7 @@ public class ContactModificationTests extends TestBase {
                 .withTitle("Ms.")
                 .withAddress(rnd.getAddressEng())
                 .withHomePhone("(852) 2877-8933")
-                .withEmail("hongkong@ihg.com");
+                .withEmail(rnd.getEmail());
 
         app.contact().modifyById(contactOld.getId(), contactNew);
 
