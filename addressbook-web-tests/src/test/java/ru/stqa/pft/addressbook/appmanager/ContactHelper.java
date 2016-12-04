@@ -9,7 +9,9 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by gis on 02.11.2016.
@@ -100,7 +102,9 @@ public class ContactHelper extends HelperBase {
                 String firstname = element.findElement(By.xpath("td[3]")).getText();
                 String address = element.findElement(By.xpath("td[4]")).getText();
                 String allPhones = element.findElement(By.xpath("td[6]")).getText();
-                String email = element.findElement(By.xpath("td[5]/a")).getText();
+                String allEmails = element.findElements(By.xpath("td[5]/a")).stream()
+                        .map((e) -> e.getText())
+                        .collect(Collectors.joining("\n"));
 
                 ContactData contact = new ContactData();
                 contact
@@ -109,7 +113,7 @@ public class ContactHelper extends HelperBase {
                         .withLastname(lastname)
                         .withAddress(address)
                         .withAllPhones(allPhones)
-                        .withEmail(email);
+                        .withAllEmails(allEmails);
                 contactsCache.add(contact);
             }
             return contactsCache;
@@ -164,7 +168,9 @@ public class ContactHelper extends HelperBase {
                 .withHomePhone(getValueAttribute(By.name("home")))
                 .withMobilePhone(getValueAttribute(By.name("mobile")))
                 .withWorkPhone(getValueAttribute(By.name("work")))
-                .withEmail(getValueAttribute(By.name("email")));
+                .withEmail(getValueAttribute(By.name("email")))
+                .withEmail2(getValueAttribute(By.name("email2")))
+                .withEmail3(getValueAttribute(By.name("email3")));
         wd.navigate().back();
         return contact;
     }

@@ -34,7 +34,13 @@ public class ContactDataTests extends TestBase {
         assertThat(contact, equalTo(contactDataFromEditForm));
         assertThat(contact.getAddress(), equalTo(contactDataFromEditForm.getAddress()));
         assertThat(contact.getAllPhones(), equalTo(mergePhones(contactDataFromEditForm)));
-        assertThat(contact.getEmail(), equalTo(contactDataFromEditForm.getEmail()));
+        assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactDataFromEditForm)));
+    }
+
+    private String mergeEmails(ContactData contact) {
+        return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
+                .stream().filter((s) -> !s.equals(""))
+                .collect(Collectors.joining("\n"));
     }
 
     private String mergePhones(ContactData contact) {
