@@ -14,6 +14,9 @@ public class ContactData {
     private String workPhone;
     private String allPhones;
     private String email;
+    private String email2;
+    private String email3;
+    private String allEmails;
     private String group;
 
     public ContactData() {
@@ -27,6 +30,8 @@ public class ContactData {
         this.mobilePhone = "";
         this.workPhone = "";
         this.email = "";
+        this.email2 = "";
+        this.email3 = "";
         this.group = null;
     }
 
@@ -40,9 +45,11 @@ public class ContactData {
                 .withTitle("Dr.")
                 .withAddress(rnd.getAddressEng())
                 .withHomePhone(Math.random() > 0.3 ? rnd.getPhone() : "")
-                .withMobilePhone(Math.random() > 0.3 ? rnd.getPhone() : "")
-                .withWorkPhone(Math.random() > 0.3 ? rnd.getPhone() : "")
-                .withEmail(rnd.getEmail());
+                .withMobilePhone(Math.random() > 0.5 ? rnd.getPhone() : "")
+                .withWorkPhone(Math.random() > 0.5 ? rnd.getPhone() : "")
+                .withEmail(Math.random() > 0.3 ? rnd.getEmail() : "")
+                .withEmail2(Math.random() > 0.5 ? rnd.getEmail() : "")
+                .withEmail3(Math.random() > 0.5 ? rnd.getEmail() : "");
         return contact;
     }
 
@@ -140,6 +147,33 @@ public class ContactData {
 
     public ContactData withEmail(String email) {
         this.email = email;
+        return this;
+    }
+
+    public String getEmail2() {
+        return email2;
+    }
+
+    public ContactData withEmail2(String email) {
+        this.email2 = email;
+        return this;
+    }
+
+    public String getEmail3() {
+        return email3;
+    }
+
+    public ContactData withEmail3(String email) {
+        this.email3 = email;
+        return this;
+    }
+
+    public String getAllEmails() {
+        return allEmails;
+    }
+
+    public ContactData withAllEmails(String allEmails) {
+        this.allEmails = allEmails;
         return this;
     }
 
