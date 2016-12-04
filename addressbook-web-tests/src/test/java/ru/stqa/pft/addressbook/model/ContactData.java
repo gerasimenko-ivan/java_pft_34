@@ -39,9 +39,9 @@ public class ContactData {
                 .withLastname(rnd.getSurnameEng())
                 .withTitle("Dr.")
                 .withAddress(rnd.getAddressEng())
-                .withHomePhone(rnd.getPhone())
-                .withMobilePhone(rnd.getPhone())
-                .withWorkPhone(rnd.getPhone())
+                .withHomePhone(Math.random() > 0.3 ? rnd.getPhone() : "")
+                .withMobilePhone(Math.random() > 0.3 ? rnd.getPhone() : "")
+                .withWorkPhone(Math.random() > 0.3 ? rnd.getPhone() : "")
                 .withEmail(rnd.getEmail());
         return contact;
     }
