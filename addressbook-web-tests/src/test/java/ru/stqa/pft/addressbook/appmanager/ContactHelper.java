@@ -97,7 +97,7 @@ public class ContactHelper extends HelperBase {
                 String lastname = element.findElement(By.xpath("td[2]")).getText();
                 String firstname = element.findElement(By.xpath("td[3]")).getText();
                 String address = element.findElement(By.xpath("td[4]")).getText();
-                String[] phones = element.findElement(By.xpath("td[6]")).getText().split("\n");
+                String allPhones = element.findElement(By.xpath("td[6]")).getText();
                 String email = element.findElement(By.xpath("td[5]/a")).getText();
 
                 ContactData contact = new ContactData();
@@ -106,9 +106,7 @@ public class ContactHelper extends HelperBase {
                         .withFirstname(firstname)
                         .withLastname(lastname)
                         .withAddress(address)
-                        .withHomePhone(phones[0])
-                        .withMobilePhone(phones[1])
-                        .withWorkPhone(phones[2])
+                        .withAllPhones(allPhones)
                         .withEmail(email);
                 contactsCache.add(contact);
             }

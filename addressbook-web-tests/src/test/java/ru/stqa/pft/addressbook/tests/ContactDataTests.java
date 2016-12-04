@@ -1,10 +1,11 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
@@ -32,13 +33,18 @@ public class ContactDataTests extends TestBase {
         // assertions
         assertThat(contact, equalTo(contactDataFromEditForm));
         assertThat(contact.getAddress(), equalTo(contactDataFromEditForm.getAddress()));
-        assertThat(contact.getHomePhone(), equalTo(cleaned(contactDataFromEditForm.getHomePhone())));
-        assertThat(contact.getMobilePhone(), equalTo(cleaned(contactDataFromEditForm.getMobilePhone())));
-        assertThat(contact.getWorkPhone(), equalTo(cleaned(contactDataFromEditForm.getWorkPhone())));
+        assertThat(contact.getAllPhones(), equalTo(mergePhones(contactDataFromEditForm)));
         assertThat(contact.getEmail(), equalTo(contactDataFromEditForm.getEmail()));
     }
 
-    public String cleaned(String phone) {
+    private String mergePhones(ContactData contact) {
+        return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())
+                .stream().filter((s) -> !s.equals(""))
+                .map(ContactDataTests::cleaned)
+                .collect(Collectors.joining("\n"));
+    }
+
+    public static String cleaned(String phone) {
         return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
     }
 }
