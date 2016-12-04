@@ -17,17 +17,7 @@ public class ContactModificationTests extends TestBase {
     public void ensurePreconditions() {
         app.navigateTo().home();
         if (! app.contact().doesExist()) {
-            ContactData contactData = new ContactData();
-            contactData
-                    .withFirstname(rnd.getFirstnameEng())
-                    .withMiddlename("E.")
-                    .withLastname(rnd.getSurnameEng())
-                    .withTitle("Dr.")
-                    .withAddress(rnd.getAddressEng())
-                    .withHomePhone(rnd.getPhone())
-                    .withMobilePhone(rnd.getPhone())
-                    .withWorkPhone(rnd.getPhone())
-                    .withEmail(rnd.getEmail());
+            ContactData contactData = ContactData.getWithRandomData();
             app.contact().create(contactData);
         }
     }
@@ -37,16 +27,8 @@ public class ContactModificationTests extends TestBase {
         Contacts contactsBefore = app.contact().all();
 
         ContactData contactOld = contactsBefore.getRandom();
-        ContactData contactNew = new ContactData()
-                .withId(contactOld.getId())
-                .withFirstname(rnd.getFirstnameEng())
-                .withLastname(rnd.getSurnameEng())
-                .withTitle("Ms.")
-                .withAddress(rnd.getAddressEng())
-                .withHomePhone(rnd.getPhone())
-                .withMobilePhone(rnd.getPhone())
-                .withWorkPhone(rnd.getPhone())
-                .withEmail(rnd.getEmail());
+        ContactData contactNew = ContactData.getWithRandomData()
+                .withId(contactOld.getId());
 
         app.contact().modifyById(contactOld.getId(), contactNew);
 

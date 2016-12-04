@@ -1,5 +1,7 @@
 package ru.stqa.pft.addressbook.model;
 
+import ru.stqa.pft.addressbook.appmanager.RandomDataGenerator;
+
 public class ContactData {
     private int id;
     private String firstname;
@@ -25,6 +27,22 @@ public class ContactData {
         this.workPhone = "";
         this.email = "";
         this.group = null;
+    }
+
+    public static ContactData getWithRandomData() {
+        RandomDataGenerator rnd = new RandomDataGenerator();
+        ContactData contact = new ContactData();
+        contact
+                .withFirstname(rnd.getFirstnameEng())
+                .withMiddlename("E.")
+                .withLastname(rnd.getSurnameEng())
+                .withTitle("Dr.")
+                .withAddress(rnd.getAddressEng())
+                .withHomePhone(rnd.getPhone())
+                .withMobilePhone(rnd.getPhone())
+                .withWorkPhone(rnd.getPhone())
+                .withEmail(rnd.getEmail());
+        return contact;
     }
 
     public int getId() { return id; }

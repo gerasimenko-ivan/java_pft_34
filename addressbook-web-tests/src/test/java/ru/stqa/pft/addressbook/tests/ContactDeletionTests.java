@@ -17,17 +17,7 @@ public class ContactDeletionTests extends TestBase {
     public void ensurePreconditions() {
         app.navigateTo().home();
         if (! app.contact().doesExist()) {
-            ContactData contactData = new ContactData();
-            contactData
-                    .withFirstname(rnd.getFirstnameEng())
-                    .withMiddlename("E.")
-                    .withLastname(rnd.getSurnameEng())
-                    .withTitle("Dr.")
-                    .withAddress(rnd.getAddressEng())
-                    .withHomePhone(rnd.getPhone())
-                    .withMobilePhone(rnd.getPhone())
-                    .withWorkPhone(rnd.getPhone())
-                    .withEmail(rnd.getEmail());
+            ContactData contactData = ContactData.getWithRandomData();
             app.contact().create(contactData);
         }
     }
