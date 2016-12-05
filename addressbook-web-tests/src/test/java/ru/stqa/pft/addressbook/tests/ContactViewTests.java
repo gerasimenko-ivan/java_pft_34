@@ -14,7 +14,7 @@ import static ru.stqa.pft.addressbook.appmanager.ContactHelper.ContactViewPageIn
 /**
  * Created by gis on 04.12.2016.
  */
-public class ContatViewTests extends TestBase {
+public class ContactViewTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
