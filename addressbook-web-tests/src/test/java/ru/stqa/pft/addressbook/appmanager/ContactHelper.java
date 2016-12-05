@@ -23,6 +23,8 @@ public class ContactHelper extends HelperBase {
 
     private List<ContactData> contactsCache = null;
 
+    public enum ContactViewPageInfo {WITH_GROUP_INFO, WITHOUT_GROUP_INFO};
+
     public void submitContactCreation() {
         click(By.xpath("//*[@id='content']/*/input[@value='Enter']"));
         contactsCache = null;
@@ -178,12 +180,14 @@ public class ContactHelper extends HelperBase {
         return contact;
     }
 
-    public String getContactInfoFromViewPageById(int contactId) {
+    public String getContactInfoFromViewPageById(int contactId, ContactViewPageInfo includeGroupInfo) {
         viewContactById(contactId);
         String viewContent = find(By.xpath(".//*[@id='content']")).getText();
         wd.navigate().back();
+        if (includeGroupInfo == ContactViewPageInfo.WITHOUT_GROUP_INFO) {
+            viewContent = viewContent.replaceAll("\\n\\n\\nMember of:.*", "");
+        }
         return viewContent;
     }
-
 
 }

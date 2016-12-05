@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static ru.stqa.pft.addressbook.appmanager.ContactHelper.ContactViewPageInfo.*;
 
 /**
  * Created by gis on 04.12.2016.
@@ -29,11 +30,13 @@ public class ContatViewTests extends TestBase {
         app.navigateTo().home();
 
         int contactId = app.contact().all().getRandom().getId();
-        String contactInfoFromViewPage = app.contact().getContactInfoFromViewPageById(contactId);
+        String contactInfoFromViewPageWithoutGroupInfo =
+                app.contact().getContactInfoFromViewPageById(contactId, WITHOUT_GROUP_INFO);
         ContactData contactFromEditPage = app.contact().getInfoFromEditFormById(contactId);
 
         // assertions
-        assertThat(contactInfoFromViewPage, equalTo(generateVeiwPageContendBy(contactFromEditPage)));
+        assertThat(contactInfoFromViewPageWithoutGroupInfo,
+                equalTo(generateVeiwPageContendBy(contactFromEditPage)));
     }
 
     private String generateVeiwPageContendBy(ContactData contact) {
