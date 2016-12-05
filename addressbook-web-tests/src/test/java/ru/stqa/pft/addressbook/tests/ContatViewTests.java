@@ -33,8 +33,7 @@ public class ContatViewTests extends TestBase {
         ContactData contactFromEditPage = app.contact().getInfoFromEditFormById(contactId);
 
         // assertions
-        String l = generateVeiwPageContendBy(contactFromEditPage);
-        assertThat(contactInfoFromViewPage, equalTo(l));
+        assertThat(contactInfoFromViewPage, equalTo(generateVeiwPageContendBy(contactFromEditPage)));
     }
 
     private String generateVeiwPageContendBy(ContactData contact) {

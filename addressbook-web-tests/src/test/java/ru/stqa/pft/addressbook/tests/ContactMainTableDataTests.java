@@ -13,7 +13,7 @@ import static org.hamcrest.MatcherAssert.*;
 /**
  * Created by gis on 03.12.2016.
  */
-public class ContactDataTests extends TestBase {
+public class ContactMainTableDataTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
@@ -25,7 +25,7 @@ public class ContactDataTests extends TestBase {
     }
 
     @Test
-    public void testContactData() {
+    public void testContactMainTableData() {
         app.navigateTo().home();
         ContactData contact = app.contact().all().getRandom();
         ContactData contactDataFromEditForm = app.contact().getInfoFromEditFormById(contact.getId());
@@ -46,7 +46,7 @@ public class ContactDataTests extends TestBase {
     private String mergePhones(ContactData contact) {
         return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())
                 .stream().filter((s) -> !s.equals(""))
-                .map(ContactDataTests::cleaned)
+                .map(ContactMainTableDataTests::cleaned)
                 .collect(Collectors.joining("\n"));
     }
 
