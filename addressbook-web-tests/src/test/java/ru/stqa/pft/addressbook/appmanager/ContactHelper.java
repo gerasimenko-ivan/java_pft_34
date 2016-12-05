@@ -9,7 +9,6 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -132,6 +131,10 @@ public class ContactHelper extends HelperBase {
         find(By.id("maintable"));
     }
 
+    private void viewContactById(int contactId) {
+        find(By.xpath(".//*/a[@href='view.php?id=" + contactId + "']")).click();
+    }
+
     //////////////////////////// complex methods //////////////////////////
 
     public void create(ContactData contact) {
@@ -174,4 +177,13 @@ public class ContactHelper extends HelperBase {
         wd.navigate().back();
         return contact;
     }
+
+    public String getContactInfoFromViewPageById(int contactId) {
+        viewContactById(contactId);
+        String viewContent = find(By.xpath(".//*[@id='content']")).getText();
+        wd.navigate().back();
+        return viewContent;
+    }
+
+
 }

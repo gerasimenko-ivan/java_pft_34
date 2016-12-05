@@ -214,4 +214,12 @@ public class ContactData {
         result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
         return result;
     }
+
+    public boolean hasPhone() {
+        return (!getHomePhone().equals("")) || (!getMobilePhone().equals("")) || (!getWorkPhone().equals(""));
+    }
+
+    public boolean hasEmail() {
+        return (!getEmail().equals("")) || (!getEmail2().equals("")) || (!getEmail3().equals(""));
+    }
 }
