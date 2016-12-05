@@ -2,6 +2,7 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.*;
 
+import java.io.File;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -34,6 +35,12 @@ public class HelperBase {
                 element.clear();
                 element.sendKeys(text);
             }
+        }
+    }
+
+    protected void attach(By locator, File file) {
+        if (file != null) {
+            findElementWithTimeout(locator, 60, TimeUnit.SECONDS).sendKeys(file.getAbsolutePath());
         }
     }
 

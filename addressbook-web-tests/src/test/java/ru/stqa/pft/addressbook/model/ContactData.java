@@ -2,6 +2,8 @@ package ru.stqa.pft.addressbook.model;
 
 import ru.stqa.pft.addressbook.appmanager.RandomDataGenerator;
 
+import java.io.File;
+
 public class ContactData {
     private int id;
     private String firstname;
@@ -18,6 +20,7 @@ public class ContactData {
     private String email3;
     private String allEmails;
     private String group;
+    private File photo;
 
     public ContactData() {
         this.id = 0;
@@ -183,6 +186,15 @@ public class ContactData {
 
     public ContactData withGroup(String group) {
         this.group = group;
+        return this;
+    }
+
+    public File getPhoto() {
+        return photo;
+    }
+
+    public ContactData withPhoto(File photo) {
+        this.photo = photo;
         return this;
     }
 
