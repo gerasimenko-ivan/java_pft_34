@@ -35,8 +35,12 @@ public class ContactViewTests extends TestBase {
         ContactData contactFromEditPage = app.contact().getInfoFromEditFormById(contactId);
 
         // assertions
-        assertThat(contactInfoFromViewPageWithoutGroupInfo,
-                equalTo(generateVeiwPageContendBy(contactFromEditPage)));
+        assertThat(removeDoubleNewLine(contactInfoFromViewPageWithoutGroupInfo),
+                equalTo(removeDoubleNewLine(generateVeiwPageContendBy(contactFromEditPage))));
+    }
+
+    private String removeDoubleNewLine(String text) {
+        return text.replace("\n\n\n", "\n").replace("\n\n", "\n");
     }
 
     private String generateVeiwPageContendBy(ContactData contact) {
