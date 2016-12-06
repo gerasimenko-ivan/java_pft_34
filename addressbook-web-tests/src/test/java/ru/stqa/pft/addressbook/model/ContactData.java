@@ -1,10 +1,14 @@
 package ru.stqa.pft.addressbook.model;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import ru.stqa.pft.addressbook.appmanager.RandomDataGenerator;
 
 import java.io.File;
 
+@XStreamAlias("contact")
 public class ContactData {
+    @XStreamOmitField
     private int id;
     private String firstname;
     private String middlename;
@@ -14,10 +18,12 @@ public class ContactData {
     private String homePhone;
     private String mobilePhone;
     private String workPhone;
+    @XStreamOmitField
     private String allPhones;
     private String email;
     private String email2;
     private String email3;
+    @XStreamOmitField
     private String allEmails;
     private String group;
     private File photo;

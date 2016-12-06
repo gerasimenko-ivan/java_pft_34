@@ -1,0 +1,41 @@
+<list>
+  <contact>
+    <firstname>Henrich</firstname>
+    <middlename>E.</middlename>
+    <lastname>Doe</lastname>
+    <title>Dr.</title>
+    <address>478C, Baker Street, Boston</address>
+    <homePhone>+7(751)350-91-35</homePhone>
+    <mobilePhone></mobilePhone>
+    <workPhone></workPhone>
+    <email>ElviseBiber91772072@mail.com</email>
+    <email2>Pit.Trammel@mail.com</email2>
+    <email3></email3>
+  </contact>
+  <contact>
+    <firstname>Bob</firstname>
+    <middlename>E.</middlename>
+    <lastname>Tramp</lastname>
+    <title>Dr.</title>
+    <address>458/4, Wall Street, Boston</address>
+    <homePhone>+5(895)157-93-49</homePhone>
+    <mobilePhone>+3(886)781-46-82</mobilePhone>
+    <workPhone></workPhone>
+    <email>ElviseDavis95291452@mail.com</email>
+    <email2></email2>
+    <email3>Ted.Clapton@mail.com</email3>
+  </contact>
+  <contact>
+    <firstname>Glenn</firstname>
+    <middlename>E.</middlename>
+    <lastname>Smith</lastname>
+    <title>Dr.</title>
+    <address>440, Baker Street, Moscow</address>
+    <homePhone>4(556)817-47-23</homePhone>
+    <mobilePhone>4(942)485-17-23</mobilePhone>
+    <workPhone></workPhone>
+    <email></email>
+    <email2></email2>
+    <email3>JackTrammel99403570@mail.com</email3>
+  </contact>
+</list>
