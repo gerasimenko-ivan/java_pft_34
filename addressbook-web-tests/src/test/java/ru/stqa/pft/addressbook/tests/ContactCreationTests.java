@@ -26,14 +26,14 @@ public class ContactCreationTests extends TestBase {
     @DataProvider
     public Iterator<Object[]> validContactsFromXml() throws IOException {
         List<Object[]> list = new ArrayList<Object[]>();
-        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")));
         StringBuilder xml = new StringBuilder();
-        String line = reader.readLine();
-        while (line != null) {
-            xml.append(line);
-            line = reader.readLine();
+        try(BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")))) {
+            String line = reader.readLine();
+            while (line != null) {
+                xml.append(line);
+                line = reader.readLine();
+            }
         }
-
         XStream xStream = new XStream();
         xStream.processAnnotations(ContactData.class);
         List<ContactData> contacts = (List<ContactData>) xStream.fromXML(xml.toString());
