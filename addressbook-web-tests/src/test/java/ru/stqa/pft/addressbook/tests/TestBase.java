@@ -11,7 +11,8 @@ import ru.stqa.pft.addressbook.appmanager.RandomDataGenerator;
  */
 public class TestBase {
 
-    protected static final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
+    protected static final ApplicationManager app =
+            new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
     protected static final RandomDataGenerator rnd = new RandomDataGenerator();
 
     @BeforeSuite
