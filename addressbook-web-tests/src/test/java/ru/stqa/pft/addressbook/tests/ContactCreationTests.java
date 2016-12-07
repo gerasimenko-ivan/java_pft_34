@@ -27,16 +27,16 @@ public class ContactCreationTests extends TestBase {
     public Iterator<Object[]> validContactsFromXml() throws IOException {
         List<Object[]> list = new ArrayList<Object[]>();
         BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")));
-        String xml = "";
+        StringBuilder xml = new StringBuilder();
         String line = reader.readLine();
         while (line != null) {
-            xml += line;
+            xml.append(line);
             line = reader.readLine();
         }
 
         XStream xStream = new XStream();
         xStream.processAnnotations(ContactData.class);
-        List<ContactData> contacts = (List<ContactData>) xStream.fromXML(xml);
+        List<ContactData> contacts = (List<ContactData>) xStream.fromXML(xml.toString());
         return contacts.stream().map((c) -> new Object[] {c}).collect(Collectors.toList()).iterator();
     }
 
