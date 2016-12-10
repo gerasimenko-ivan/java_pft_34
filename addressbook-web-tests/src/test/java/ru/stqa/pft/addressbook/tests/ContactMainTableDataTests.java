@@ -32,7 +32,7 @@ public class ContactMainTableDataTests extends TestBase {
 
         // assertions
         assertThat(contact, equalTo(contactDataFromEditForm));
-        assertThat(contact.getAddress(), equalTo(contactDataFromEditForm.getAddress() + ";"));
+        assertThat(contact.getAddress(), equalTo(contactDataFromEditForm.getAddress()));
         assertThat(contact.getAllPhones(), equalTo(mergePhones(contactDataFromEditForm)));
         assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactDataFromEditForm)));
     }
