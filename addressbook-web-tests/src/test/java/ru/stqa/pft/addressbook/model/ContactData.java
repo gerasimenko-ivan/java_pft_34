@@ -2,31 +2,60 @@ package ru.stqa.pft.addressbook.model;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 import ru.stqa.pft.addressbook.appmanager.RandomDataGenerator;
 
+import javax.persistence.*;
 import java.io.File;
 
 @XStreamAlias("contact")
+@Entity
+@Table(name = "addressbook")
 public class ContactData {
     @XStreamOmitField
+    @Id
+    @Column(name = "id")
     private int id;
+    @Column(name = "firstname")
     private String firstname;
+    @Column(name = "middlename")
     private String middlename;
+    @Column(name = "lastname")
     private String lastname;
+    @Column(name = "title")
     private String title;
+    @Column(name = "address")
+    @Type(type = "text")
     private String address;
+    @Column(name = "home")
+    @Type(type = "text")
     private String homePhone;
+    @Column(name = "mobile")
+    @Type(type = "text")
     private String mobilePhone;
+    @Column(name = "work")
+    @Type(type = "text")
     private String workPhone;
     @XStreamOmitField
+    @Transient
     private String allPhones;
+    @Column(name = "email")
+    @Type(type = "text")
     private String email;
+    @Column(name = "email2")
+    @Type(type = "text")
     private String email2;
+    @Column(name = "email3")
+    @Type(type = "text")
     private String email3;
     @XStreamOmitField
+    @Transient
     private String allEmails;
+    @Transient
     private String group;
-    private File photo;
+    @Column(name = "photo")
+    @Type(type = "text")
+    private String photo;
 
     public ContactData() {
         this.id = 0;
@@ -196,11 +225,11 @@ public class ContactData {
     }
 
     public File getPhoto() {
-        return photo;
+        return new File(photo);
     }
 
     public ContactData withPhoto(File photo) {
-        this.photo = photo;
+        this.photo = photo.getAbsolutePath();
         return this;
     }
 
