@@ -63,10 +63,12 @@ public class ContactHelper extends HelperBase {
     }
 
     public void selectById(int id) {
+        logger.info("select input by id=" + id);
         click(By.xpath(".//*/input[@id='" + id + "']"));
     }
 
     public void deleteSelected() {
+        logger.info("submit delete");
         click(By.xpath("//input[@onclick='DeleteSel()']"));
         contactsCache = null;
     }
@@ -155,6 +157,8 @@ public class ContactHelper extends HelperBase {
     }
 
     public void modifyById(int oldContactId, ContactData newContact) {
+        logger.info("modifing contact with id=" + oldContactId);
+        logger.info("new contact {" + newContact + "}");
         initContactModificationById(oldContactId);
         fillContactForm(newContact, FormAction.MODIFICATION);
         submitContactModification();
@@ -162,6 +166,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public ContactData getInfoFromEditFormById(int id) {
+        logger.info("getting info from edit form about contact with id=" + id);
         initContactModificationById(id);
         ContactData contact = new ContactData();
         contact

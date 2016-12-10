@@ -1,6 +1,9 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import ru.stqa.pft.addressbook.tests.TestBase;
 
 import java.io.File;
 import java.util.List;
@@ -21,6 +24,8 @@ public class HelperBase {
     }
 
     public enum FormAction {CREATION, MODIFICATION};
+
+    Logger logger = LoggerFactory.getLogger("");
 
     protected void click(By locator) {
         WebElement element = findElementWithTimeout(locator, 60, TimeUnit.SECONDS);
