@@ -29,6 +29,7 @@ public class ApplicationManager {
     private String browser;
 
     private final Properties properties;
+    private DbHelper dbHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -39,6 +40,8 @@ public class ApplicationManager {
         System.setProperty("webdriver.gecko.driver", "C:\\Tools\\GeckoDriver\\geckodriver.exe");
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+
+        dbHelper = new DbHelper();
 
         if (browser.equals(BrowserType.FIREFOX)) {
             FirefoxProfile profile = new FirefoxProfile();
@@ -80,4 +83,6 @@ public class ApplicationManager {
     }
 
     public AlertHelper getAlertHelper() { return alertHelper; }
+
+    public DbHelper db() { return dbHelper; }
 }
