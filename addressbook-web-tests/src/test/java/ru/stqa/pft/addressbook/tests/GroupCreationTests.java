@@ -60,13 +60,13 @@ public class GroupCreationTests extends TestBase {
     @Test(dataProvider = "validGroupsFromXml")
     public void testGroupCreation(GroupData group) {
         app.navigateTo().groupPage();
-        Groups groupsBefore = app.group().all();
+        Groups groupsBefore = app.db().groups();
 
         app.group().create(group);
 
         // assertions
         assertThat(app.group().getGroupCount(), equalTo(groupsBefore.size() + 1));
-        Groups groupsAfter = app.group().all();
+        Groups groupsAfter = app.db().groups();
         group.withId(groupsAfter.stream().mapToInt((g) -> g.getId()).max().getAsInt());
         assertThat(groupsAfter, equalTo(groupsBefore.withAdded(group)));
     }
@@ -74,7 +74,7 @@ public class GroupCreationTests extends TestBase {
     @Test
     public void testBadGroupCreation() {
         app.navigateTo().groupPage();
-        Groups groupsBefore = app.group().all();
+        Groups groupsBefore = app.db().groups();
 
         GroupData group = new GroupData()
                 .withName("test'" + rnd.getInt(0, 1000));
@@ -82,7 +82,7 @@ public class GroupCreationTests extends TestBase {
 
         // assertions
         assertThat(app.group().getGroupCount(), equalTo(groupsBefore.size()));
-        Groups groupsAfter = app.group().all();
+        Groups groupsAfter = app.db().groups();
         assertThat(groupsAfter, equalTo(groupsBefore));
     }
 
