@@ -55,4 +55,8 @@ public class Contacts extends ForwardingSet<ContactData> {
         int index = (int)(Math.random() * contacts.size());
         return contacts.get(index);
     }
+
+    public ContactData getById(int id) {
+        return this.delegate.stream().filter(c -> c.getId() == id).findFirst().get();
+    }
 }

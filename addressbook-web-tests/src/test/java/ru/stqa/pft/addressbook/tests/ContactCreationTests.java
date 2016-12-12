@@ -42,8 +42,8 @@ public class ContactCreationTests extends TestBase {
 
     @BeforeClass
     public void ensurePreconditions() {
-        app.navigateTo().groupPage();
-        if (! app.group().doesExist(groupName)) {
+        if ( !app.db().groups().stream().anyMatch((g) -> g.getName() == groupName)) {
+            app.navigateTo().groupPage();
             GroupData groupData = new GroupData().withName(groupName);
             app.group().create(groupData);
         }
@@ -52,7 +52,7 @@ public class ContactCreationTests extends TestBase {
     @Test(dataProvider = "validContactsFromXml")
     public void testContactCreation(ContactData contact) {
         app.navigateTo().home();
-        Contacts contactsBefore = app.contact().all();
+        Contacts contactsBefore = app.db().contacts();
         File photo = new File("src/test/resources/vinni.jpeg");
         contact = contact
                 .withGroup(groupName)
@@ -61,7 +61,7 @@ public class ContactCreationTests extends TestBase {
 
         // assertions
         assertThat(app.contact().getContactCount(), equalTo(contactsBefore.size() + 1));
-        Contacts contactsAfter = app.contact().all();
+        Contacts contactsAfter = app.db().contacts();
         contact.withId(contactsAfter.stream().mapToInt((c) -> c.getId()).max().getAsInt());
         assertThat(contactsAfter, equalTo(contactsBefore.withAdded(contact)));
     }

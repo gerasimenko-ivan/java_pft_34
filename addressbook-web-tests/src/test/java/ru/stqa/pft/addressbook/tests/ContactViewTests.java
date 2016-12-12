@@ -18,8 +18,7 @@ public class ContactViewTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        app.navigateTo().home();
-        if (! app.contact().doesExist()) {
+        if (app.db().contacts().size() == 0) {
             ContactData contactData = ContactData.getWithRandomData();
             app.contact().create(contactData);
         }
@@ -29,14 +28,15 @@ public class ContactViewTests extends TestBase {
     public void contactViewTest() {
         app.navigateTo().home();
 
-        int contactId = app.contact().all().getRandom().getId();
+        int contactId = app.db().contacts().getRandom().getId();
         String contactInfoFromViewPageWithoutGroupInfo =
                 app.contact().getContactInfoFromViewPageById(contactId, WITHOUT_GROUP_INFO);
-        ContactData contactFromEditPage = app.contact().getInfoFromEditFormById(contactId);
+        //ContactData contactFromDb = app.contact().getInfoFromEditFormById(contactId);
+        ContactData contactFromDb = app.db().contacts().getById(contactId);
 
         // assertions
         assertThat(removeDoubleNewLine(contactInfoFromViewPageWithoutGroupInfo),
-                equalTo(removeDoubleNewLine(generateVeiwPageContendBy(contactFromEditPage))));
+                equalTo(removeDoubleNewLine(generateVeiwPageContendBy(contactFromDb))));
     }
 
     private String removeDoubleNewLine(String text) {

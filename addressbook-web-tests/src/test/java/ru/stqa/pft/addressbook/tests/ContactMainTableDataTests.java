@@ -1,5 +1,8 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.hamcrest.BaseMatcher;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
@@ -17,8 +20,7 @@ public class ContactMainTableDataTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        app.navigateTo().home();
-        if (! app.contact().doesExist()) {
+        if (app.db().contacts().size() == 0) {
             ContactData contactData = ContactData.getWithRandomData();
             app.contact().create(contactData);
         }
@@ -27,14 +29,14 @@ public class ContactMainTableDataTests extends TestBase {
     @Test
     public void testContactMainTableData() {
         app.navigateTo().home();
-        ContactData contact = app.contact().all().getRandom();
-        ContactData contactDataFromEditForm = app.contact().getInfoFromEditFormById(contact.getId());
+        ContactData contactFromMainTable = app.contact().all().getRandom();
+        ContactData contactFromDb = app.db().contacts().stream().filter(c -> c.getId() == contactFromMainTable.getId()).findFirst().get();
 
         // assertions
-        assertThat(contact, equalTo(contactDataFromEditForm));
-        assertThat(contact.getAddress(), equalTo(contactDataFromEditForm.getAddress()));
-        assertThat(contact.getAllPhones(), equalTo(mergePhones(contactDataFromEditForm)));
-        assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactDataFromEditForm)));
+        assertThat(contactFromMainTable, byIdFirstLastNameAndAddressEqualTo(contactFromDb));
+        //assertThat(contactFromMainTable.getAddress(), equalTo(contactFromDb.getAddress()));
+        assertThat(contactFromMainTable.getAllPhones(), equalTo(mergePhones(contactFromDb)));
+        assertThat(contactFromMainTable.getAllEmails(), equalTo(mergeEmails(contactFromDb)));
     }
 
     private String mergeEmails(ContactData contact) {
@@ -52,5 +54,28 @@ public class ContactMainTableDataTests extends TestBase {
 
     public static String cleaned(String phone) {
         return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
+    }
+
+    private Matcher<ContactData> byIdFirstLastNameAndAddressEqualTo(final ContactData contactExpected) {
+        return new BaseMatcher<ContactData>() {
+            @Override
+            public boolean matches(final Object objectActual) {
+                final ContactData contactActual = (ContactData) objectActual;
+
+                if (contactActual.getId() != contactExpected.getId()) return false;
+                if (contactActual.getFirstname() != null ? !contactActual.getFirstname().equals(contactExpected.getFirstname()) : contactExpected.getFirstname() != null) return false;
+                if (contactActual.getLastname() != null ? !contactActual.getLastname().equals(contactExpected.getLastname()) : contactExpected.getLastname() != null) return false;
+                return contactActual.getAddress() != null ? contactActual.getAddress().equals(contactExpected.getAddress()) : contactExpected.getAddress() == null;
+            }
+            @Override
+            public void describeTo(final Description description) {
+                description.appendText("getNumber should return ").appendValue(contactExpected);
+            }
+            @Override
+            public void describeMismatch(final Object objectActual, final
+            Description description) {
+                description.appendText("was ").appendValue(((ContactData) objectActual));
+            }
+        };
     }
 }
