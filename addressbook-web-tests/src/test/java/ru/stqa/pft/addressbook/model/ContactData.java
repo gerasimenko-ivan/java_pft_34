@@ -7,6 +7,8 @@ import ru.stqa.pft.addressbook.appmanager.RandomDataGenerator;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 @XStreamAlias("contact")
 @Entity
@@ -171,7 +173,13 @@ public class ContactData {
     }
 
     public String getAllPhones() {
-        return allPhones;
+        if (allPhones == null || allPhones.equals("")) {
+            return Arrays.asList(this.getHomePhone(), this.getMobilePhone(), this.getWorkPhone())
+                    .stream().filter((s) -> !s.equals(""))
+                    .collect(Collectors.joining("\n"));
+        } else {
+            return allPhones;
+        }
     }
 
     public ContactData withAllPhones(String allPhones) {
@@ -207,7 +215,13 @@ public class ContactData {
     }
 
     public String getAllEmails() {
-        return allEmails;
+        if (allEmails == null || allEmails.equals("")) {
+            return Arrays.asList(this.getEmail(), this.getEmail2(), this.getEmail3())
+                    .stream().filter((s) -> !s.equals(""))
+                    .collect(Collectors.joining("\n"));
+        } else {
+            return allEmails;
+        }
     }
 
     public ContactData withAllEmails(String allEmails) {

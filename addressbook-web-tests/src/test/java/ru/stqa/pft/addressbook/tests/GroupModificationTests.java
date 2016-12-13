@@ -38,5 +38,7 @@ public class GroupModificationTests extends TestBase {
         assertThat(app.group().getGroupCount(), equalTo(groupsBefore.size()));
         Groups groupsAfter = app.db().groups();
         assertThat(groupsAfter, equalTo(groupsBefore.withModified(groupOld, groupNew)));
+        verifyGroupListInUI();
     }
+
 }

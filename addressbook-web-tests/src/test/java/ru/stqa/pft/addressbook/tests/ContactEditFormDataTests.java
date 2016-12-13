@@ -28,5 +28,6 @@ public class ContactEditFormDataTests extends TestBase {
 
         // assertions
         assertThat(contactFromDb, equalTo(contactDataFromEditForm));
+        verifyContactListInUI();
     }
 }
