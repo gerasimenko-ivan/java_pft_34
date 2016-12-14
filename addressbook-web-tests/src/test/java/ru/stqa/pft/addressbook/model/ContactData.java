@@ -2,12 +2,15 @@ package ru.stqa.pft.addressbook.model;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.ManyToAny;
 import org.hibernate.annotations.Type;
 import ru.stqa.pft.addressbook.appmanager.RandomDataGenerator;
 
 import javax.persistence.*;
 import java.io.File;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @XStreamAlias("contact")
@@ -18,43 +21,59 @@ public class ContactData {
     @Id
     @Column(name = "id")
     private int id;
+
     @Column(name = "firstname")
     private String firstname;
+
     @Column(name = "middlename")
     private String middlename;
+
     @Column(name = "lastname")
     private String lastname;
+
     @Column(name = "title")
     private String title;
+
     @Column(name = "address")
     @Type(type = "text")
     private String address;
+
     @Column(name = "home")
     @Type(type = "text")
     private String homePhone;
+
     @Column(name = "mobile")
     @Type(type = "text")
     private String mobilePhone;
+
     @Column(name = "work")
     @Type(type = "text")
     private String workPhone;
+
     @XStreamOmitField
     @Transient
     private String allPhones;
     @Column(name = "email")
     @Type(type = "text")
     private String email;
+
     @Column(name = "email2")
     @Type(type = "text")
     private String email2;
+
     @Column(name = "email3")
     @Type(type = "text")
     private String email3;
+
     @XStreamOmitField
     @Transient
     private String allEmails;
-    @Transient
-    private String group;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id"))
+    private Set<GroupData> groups = new HashSet<GroupData>();
+
     @Column(name = "photo")
     @Type(type = "text")
     private String photo;
@@ -72,7 +91,7 @@ public class ContactData {
         this.email = "";
         this.email2 = "";
         this.email3 = "";
-        this.group = null;
+        this.groups = new HashSet<GroupData>();
     }
 
     public static ContactData getWithRandomData() {
@@ -229,12 +248,15 @@ public class ContactData {
         return this;
     }
 
-    public String getGroup() {
-        return group;
+    public Groups getGroups() {
+        return new Groups(groups);
     }
 
-    public ContactData withGroup(String group) {
-        this.group = group;
+    public ContactData inGroup(GroupData group) {
+        if (groups == null) {
+            groups = new HashSet<GroupData>();
+        }
+        groups.add(group);
         return this;
     }
 
@@ -306,4 +328,6 @@ public class ContactData {
         result = 31 * result + (email3 != null ? email3.hashCode() : 0);
         return result;
     }
+
+
 }
