@@ -229,4 +229,10 @@ public class ContactHelper extends HelperBase {
         gotoHomePageForGroup(group.getName());
     }
 
+    public void removeFromGroup(ContactData contact, GroupData group) {
+        selectGroupToDisplay(group.getName());
+        selectById(contact.getId());
+        clickRemoveFromGroupButton(group.getName());
+        gotoHomePageForGroup(group.getName());
+    }
 }

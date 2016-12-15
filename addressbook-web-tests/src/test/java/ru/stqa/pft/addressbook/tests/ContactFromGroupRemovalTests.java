@@ -40,10 +40,7 @@ public class ContactFromGroupRemovalTests extends TestBase {
         GroupData group = contact.getGroups().getRandom();
 
         app.navigateTo().home();
-        app.contact().selectGroupToDisplay(group.getName());
-        app.contact().selectById(contact.getId());
-        app.contact().clickRemoveFromGroupButton(group.getName());
-        app.contact().gotoHomePageForGroup(group.getName());
+        app.contact().removeFromGroup(contact, group);
 
         Contacts contactsAfter = app.db().contacts();
         assertThat(contactsAfter,
