@@ -23,6 +23,23 @@ public class ContactHelper extends HelperBase {
 
     private List<ContactData> contactsCache = null;
 
+    public void selectGroupToAddTo(String groupName) {
+        new Select(find(By.name("to_group"))).selectByVisibleText(groupName);
+    }
+
+    public void submitAddToGroup() {
+        click(By.name("add"));
+    }
+
+    public void gotoHomePageForGroup(String groupName) {
+        click(By.xpath(String.format(".//a[text()='group page \"%s\"']", groupName)));
+        find(By.xpath(String.format(".//input[@value='Remove from \"%s\"']", groupName)));
+    }
+
+    public void selectGroupToDisplay(String groupName) {
+        new Select(find(By.name("group"))).selectByVisibleText(groupName);
+    }
+
     public enum ContactViewPageInfo {WITH_GROUP_INFO, WITHOUT_GROUP_INFO};
 
     public void submitContactCreation() {
