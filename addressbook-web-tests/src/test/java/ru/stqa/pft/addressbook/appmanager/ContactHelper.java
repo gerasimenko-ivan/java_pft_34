@@ -7,10 +7,13 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static ru.stqa.pft.addressbook.model.GroupData.ALL;
 
 /**
  * Created by gis on 02.11.2016.
@@ -216,6 +219,14 @@ public class ContactHelper extends HelperBase {
             viewContent = viewContent.replaceAll("\\n\\n\\nMember of:.*", "");
         }
         return viewContent;
+    }
+
+    public void addToGroup(ContactData contact, GroupData group) {
+        selectGroupToDisplay(ALL);
+        selectById(contact.getId());
+        selectGroupToAddTo(group.getName());
+        submitAddToGroup();
+        gotoHomePageForGroup(group.getName());
     }
 
 }

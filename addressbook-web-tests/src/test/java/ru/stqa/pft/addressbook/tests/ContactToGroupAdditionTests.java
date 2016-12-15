@@ -47,11 +47,7 @@ public class ContactToGroupAdditionTests extends TestBase {
 
         Contacts contactsBefore = app.db().contacts();
         app.navigateTo().home();
-        app.contact().selectGroupToDisplay(ALL);
-        app.contact().selectById(contact.getId());
-        app.contact().selectGroupToAddTo(group.getName());
-        app.contact().submitAddToGroup();
-        app.contact().gotoHomePageForGroup(group.getName());
+        app.contact().addToGroup(contact, group);
 
         Contacts contactsAfter = app.db().contacts();
         assertThat(contactsAfter, equalTo(contactsBefore.without(contact).withAdded(contact.inGroup(group))));
