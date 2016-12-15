@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static ru.stqa.pft.addressbook.appmanager.ContactHelper.ContactViewPageInfo.*;
+import static ru.stqa.pft.addressbook.model.GroupData.ALL;
 
 /**
  * Created by gis on 04.12.2016.
@@ -27,6 +28,7 @@ public class ContactViewTests extends TestBase {
     @Test
     public void contactViewTest() {
         app.navigateTo().home();
+        app.contact().selectGroupToDisplay(ALL);
 
         int contactId = app.db().contacts().getRandom().getId();
         String contactInfoFromViewPageWithoutGroupInfo =

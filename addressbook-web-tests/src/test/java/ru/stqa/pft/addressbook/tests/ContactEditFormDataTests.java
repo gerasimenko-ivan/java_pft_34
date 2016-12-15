@@ -6,6 +6,7 @@ import ru.stqa.pft.addressbook.model.ContactData;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static ru.stqa.pft.addressbook.model.GroupData.ALL;
 
 
 /**
@@ -23,6 +24,7 @@ public class ContactEditFormDataTests extends TestBase {
     @Test
     public void testContactEditFormData() {
         app.navigateTo().home();
+        app.contact().selectGroupToDisplay(ALL);
         ContactData contactFromDb = app.db().contacts().getRandom();
         ContactData contactDataFromEditForm = app.contact().getInfoFromEditFormById(contactFromDb.getId());
 

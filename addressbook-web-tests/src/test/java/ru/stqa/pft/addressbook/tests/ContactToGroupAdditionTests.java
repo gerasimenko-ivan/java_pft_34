@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static ru.stqa.pft.addressbook.model.GroupData.ALL;
 
 /**
  * Created by gis on 15.12.2016.
@@ -46,7 +47,7 @@ public class ContactToGroupAdditionTests extends TestBase {
 
         Contacts contactsBefore = app.db().contacts();
         app.navigateTo().home();
-        app.contact().selectGroupToDisplay("[all]");
+        app.contact().selectGroupToDisplay(ALL);
         app.contact().selectById(contact.getId());
         app.contact().selectGroupToAddTo(group.getName());
         app.contact().submitAddToGroup();

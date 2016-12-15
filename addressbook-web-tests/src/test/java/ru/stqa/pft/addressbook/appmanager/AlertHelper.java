@@ -12,6 +12,11 @@ public class AlertHelper extends HelperBase {
     }
 
     public void accept() {
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         wd.switchTo().alert().accept();
     }
 }

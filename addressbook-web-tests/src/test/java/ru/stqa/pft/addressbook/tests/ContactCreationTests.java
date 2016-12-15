@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static ru.stqa.pft.addressbook.model.GroupData.ALL;
 
 public class ContactCreationTests extends TestBase {
 
@@ -51,7 +52,6 @@ public class ContactCreationTests extends TestBase {
     
     @Test(dataProvider = "validContactsFromXml")
     public void testContactCreation(ContactData contact) {
-        app.navigateTo().home();
         Contacts contactsBefore = app.db().contacts();
         Groups groups = app.db().groups();
         File photo = new File("src/test/resources/vinni.jpeg");

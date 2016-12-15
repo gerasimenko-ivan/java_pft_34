@@ -8,6 +8,7 @@ import ru.stqa.pft.addressbook.model.GroupData;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static ru.stqa.pft.addressbook.model.GroupData.ALL;
 
 /**
  * Created by gis on 09.11.2016.
@@ -32,6 +33,7 @@ public class ContactModificationTests extends TestBase {
                 .withId(contactOld.getId());
 
         app.navigateTo().home();
+        app.contact().selectGroupToDisplay(ALL);
         app.contact().modifyById(contactOld.getId(), contactNew);
 
         // assertions

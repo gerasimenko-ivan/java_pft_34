@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
+import static ru.stqa.pft.addressbook.model.GroupData.ALL;
 
 /**
  * Created by gis on 03.12.2016.
@@ -29,6 +30,7 @@ public class ContactMainTableDataTests extends TestBase {
     @Test
     public void testContactMainTableData() {
         app.navigateTo().home();
+        app.contact().selectGroupToDisplay(ALL);
         ContactData contactFromMainTable = app.contact().all().getRandom();
         ContactData contactFromDb = app.db().contacts().stream().filter(c -> c.getId() == contactFromMainTable.getId()).findFirst().get();
 

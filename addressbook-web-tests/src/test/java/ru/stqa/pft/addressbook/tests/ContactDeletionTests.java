@@ -7,6 +7,7 @@ import ru.stqa.pft.addressbook.model.Contacts;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static ru.stqa.pft.addressbook.model.GroupData.ALL;
 
 /**
  * Created by gis on 07.11.2016.
@@ -23,6 +24,8 @@ public class ContactDeletionTests extends TestBase {
 
     @Test
     public void testContactDeletion() {
+        app.navigateTo().home();
+        app.contact().selectGroupToDisplay(ALL);
         Contacts contactsBefore = app.db().contacts();
 
         ContactData deletedContact = contactsBefore.getRandom();
