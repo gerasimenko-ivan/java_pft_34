@@ -22,7 +22,6 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTests extends TestBase {
-    private String groupName = "test1";
 
     @DataProvider
     public Iterator<Object[]> validContactsFromXml() throws IOException {
@@ -43,9 +42,9 @@ public class ContactCreationTests extends TestBase {
 
     @BeforeClass
     public void ensurePreconditions() {
-        if ( !app.db().groups().stream().anyMatch((g) -> g.getName() == groupName)) {
+        if (app.db().groups().size() == 0) {
             app.navigateTo().groupPage();
-            GroupData groupData = new GroupData().withName(groupName);
+            GroupData groupData = new GroupData().withName("test_group");
             app.group().create(groupData);
         }
     }
