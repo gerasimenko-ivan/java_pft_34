@@ -27,7 +27,7 @@ public class ContactEditFormDataTests extends TestBase {
         ContactData contactDataFromEditForm = app.contact().getInfoFromEditFormById(contactFromDb.getId());
 
         // assertions
-        assertThat(contactFromDb, equalTo(contactDataFromEditForm));
+        assertThat(contactFromDb.withoutGroups(), equalTo(contactDataFromEditForm));
         verifyContactListInUI();
     }
 }

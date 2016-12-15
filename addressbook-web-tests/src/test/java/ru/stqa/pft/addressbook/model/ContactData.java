@@ -330,4 +330,9 @@ public class ContactData {
         result = 31 * result + (groups != null ? groups.hashCode() : 0);
         return result;
     }
+
+    public ContactData withoutGroups() {
+        this.groups = new HashSet<GroupData>();
+        return this;
+    }
 }
