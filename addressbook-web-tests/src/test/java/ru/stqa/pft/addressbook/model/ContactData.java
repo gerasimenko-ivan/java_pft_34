@@ -335,4 +335,9 @@ public class ContactData {
         this.groups = new HashSet<GroupData>();
         return this;
     }
+
+    public ContactData leaveGroup(GroupData group) {
+        this.groups = this.getGroups().without(group);
+        return this;
+    }
 }

@@ -40,6 +40,10 @@ public class ContactHelper extends HelperBase {
         new Select(find(By.name("group"))).selectByVisibleText(groupName);
     }
 
+    public void clickRemoveFromGroupButton(String groupName) {
+        click(By.xpath(String.format(".//input[@value='Remove from \"%s\"']", groupName)));
+    }
+
     public enum ContactViewPageInfo {WITH_GROUP_INFO, WITHOUT_GROUP_INFO};
 
     public void submitContactCreation() {
